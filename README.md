@@ -1,5 +1,5 @@
 # DrBook
-Team 2
+Team 
 
 Member: Max Chen, Nancy Xie, Nancy Dominguez, Linh Truong, Shakti Suman
 <img src="pic/logo.jpg" width="700">
