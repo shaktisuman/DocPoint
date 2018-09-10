@@ -1,5 +1,5 @@
 # DrBook
-Team 
+Team 2
 
 Member: Max Chen, Nancy Xie, Nancy Dominguez, Linh Truong, Shakti Suman
 <img src="pic/logo.jpg" width="700">
@@ -7,7 +7,7 @@ Member: Max Chen, Nancy Xie, Nancy Dominguez, Linh Truong, Shakti Suman
 ---
 
 # Description
-We propose to create an appointment booking app for doctors' appointments where a patient can go online and self schedule an appointment with a doctor.
+Instead of calling in to request an appointment, we propose to create an appointment booking app for doctors' appointments where a patient can go online and self schedule an appointment with a doctor.
 
 ---
 The app would have following features
@@ -25,21 +25,41 @@ The app would have following features
 
 # Why we need DrBook?
 
-- Doctors need to make appointments for their patients more efficiently and so that it’s more readily available to their patients.
-- With an online booking system, doctors would be able to provide a cutting edge service that only a few practices offer - which in turn attracts and retains customers. Therefore, an online booking system would boost revenue and staff efficiency along with minimizing no-shows.
+- Doctors need to make appointments for their patients more efficiently and so that it's more readily available to their patients.
+- Doctors would be able to provide a cutting edge service that only a few practices offer - which in turn attracts and retains customers. Therefore, an online booking system would boost revenue and staff efficiency along with minimizing no-shows.
+- Taking out the middleman and allowing the patients themselves to book their own appointments in real time.
 ---
 
 # Why we need DrBook?
-- Taking out the middleman and allowing the patients themselves to book their own appointments in real time.
 - Increase staff efficiency by allowing them to focus on their current tasks and will boost revenue through increased new patient intake and retainability.
 - Simplify the whole process of booking an appointment for a patient and makes it more seamless and efficient for all parties.
 
 ---
 
 # Approach
+
+- The steps:
+	1. Installation and Setup (Java, MySQL)
+	2. Customize Login System
+	3. Appointment Management
+	4. Using placeholder doctor and patient data
+	5. Concrete implementation of doctor and patient functionality
+	6. Flesh out User management
+	7. Admin management
+	7. Enhancements
+
+---
+
+- How to generate solution concepts: Brainstorming, researching similar solutions
+- How to analyze performance of solution Perform UAT (user acceptance testing)
+- What are the alternatives: Get an offline secretary
+
+---
+# Deliverables
+
 Follow Agile methodology
 
-- Iteration 1: project proposal, elaboration, Installation and Setup, Customize Login System, Fetch doctor, Fetch doctor’s schedule (display), Create dummy patient homepage, Book a slot
+- Iteration 1: project proposal, elaboration, Installation and Setup, Customize Login System, Fetch doctor, Fetch doctors' schedule (display), Create dummy patient homepage, Book a slot
 
 - Iteration 2: Change/Cancel slot, Patient profile (Info, homepage),  Doctor profile (Info, homepage), Doctor slot management
 
@@ -47,6 +67,9 @@ Follow Agile methodology
 
 ---
 
+![](pic/schedule.png)
+
+---
 
 # Main features
 
@@ -70,7 +93,7 @@ Follow Agile methodology
 
 	- Appointment management
 		- Fetch doctor
-		- Fetch doctor’s schedule (display)
+		- Fetch doctors' schedule (display)
 		- Book a slot
 		- With appointment details
 		- Change/Cancel slot
