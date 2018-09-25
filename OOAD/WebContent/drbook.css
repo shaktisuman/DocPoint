@@ -1,0 +1,43 @@
+#home {
+	float:right;
+}
+
+#logout {
+	float:right;
+}
+
+#lblHi {
+	position: absolute;
+	top:5px;
+	left:10px;
+}
+
+#lblDocPick,#docList {
+	position:absolute;
+	top:25px;
+	left:10px;
+}
+
+#calHdr {
+	position:absolute;
+	top:85px;
+	left:10px;
+}
+
+#cal {
+	position:absolute;
+	top:125px;
+	left:10px;
+	width:950px;
+	height:600px;
+}
+
+.groove {
+	border-style: groove;
+	}
+	
+.days {
+	border-style: groove;
+	float:left;
+	
+}
