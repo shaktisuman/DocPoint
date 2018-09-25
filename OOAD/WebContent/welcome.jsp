@@ -7,9 +7,15 @@
 <title>Welcome Page</title>
 </head>
 <body>
-<h1> ${message} !!! </h1>
-
-	<a href="logout.jsp">logout</a>
+	<nav>
+  		<a href="login.jsp">Login Page</a> |
+  		<a href="register.jsp">Register</a> |
+  		<a href="/js/">Contact Us</a> |
+	</nav>
+<h1><font face="verdana"> ${message} Welcome!!! </font></h1>
+	<button type="submit" name="submit" value="bookappt">Book Appointment</button><br>
+	<br>
+	<a href="logout.jsp">Logout</a>
 
 </body>
 </html>
