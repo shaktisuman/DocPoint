@@ -10,6 +10,7 @@
 <title>Login Page</title>
 </head>
 <body>
+HI
 	<%out.print("Hello!"); %>
 	<%= new java.util.Date() %>
 	
