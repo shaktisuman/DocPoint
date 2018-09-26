@@ -181,6 +181,10 @@ hr {
       <h1>Sign Up</h1>
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
+      
+      <label for="name"><b>Username</b></label>
+      <input type="text" placeholder="Enter Name" name="name" required></div>
+      
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required><div id="username_error"></div>
 
