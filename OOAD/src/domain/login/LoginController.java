@@ -30,7 +30,13 @@ public class LoginController extends HttpServlet {
 		
 		if(submitType.equals("login") && c!=null && c.getName()!=null){
 			request.setAttribute("message", "Hello "+c.getName());
-			request.getRequestDispatcher("welcome.jsp").forward(request, response);
+			request.setAttribute("birthdate", "01/01/2000");
+			request.setAttribute("address", "123 Main St.");
+			request.setAttribute("city", "Richardson");
+			request.setAttribute("Gender", "F");
+			
+           
+			request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
 		}else if(submitType.equals("register")){
 			c.setName(request.getParameter("name"));
 			c.setUsername(request.getParameter("username"));
