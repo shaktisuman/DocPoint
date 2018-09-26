@@ -1,0 +1,53 @@
+html {
+  overflow: hidden;
+  height: 100%; }
+
+nav {
+  width: inherit; }
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333333; }
+    nav ul li {
+      display: inline-block;
+      float: right;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none; }
+  nav a {
+    text-decoration: none; }
+  nav a:visited {
+    text-decoration: none;
+    color: white; }
+  nav a:hover {
+    text-decoration: none;
+    color: white; }
+  nav a:focus {
+    text-decoration: none;
+    color: white; }
+  nav a:hover, nav a:active, nav a:after {
+    text-decoration: none;
+    color: white; }
+
+.box {
+  border-style: solid;
+  width: 30%;
+  display: inline-block;
+  margin: 5%;
+  align-items: center; }
+  .box h1 {
+    display: block;
+    padding: 0px;
+    margin: 0px auto;
+    background-color: aqua; }
+
+.row1 {
+  margin: 0 auto; }
+
+button {
+  font-size: 20px; }
+
+/*# sourceMappingURL=client.css.map */
