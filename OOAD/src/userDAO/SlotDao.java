@@ -9,7 +9,7 @@ public interface SlotDao {
 	
 	public int addSlot(Slot s);
 	public void updateSlot(Slot s);
-	public void deleteSlot(int Slot_Id);
+	public void deleteSlot(Slot s);
 	
 	public void deleteAllSlotsForDoc(int Doc_Id);
 	

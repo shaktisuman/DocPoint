@@ -2,14 +2,14 @@ package userDAO;
 
 public class Slot {
 	
-	private int slot_ID;
+	private int slot_Id;
 	private int start_t;
 	private int end_t;
 	private int doc_Id;
 		
 //	Empty Constructor
 	Slot (){
-		this.slot_ID = -1;
+		this.slot_Id = -1;
 		this.start_t = -1;
 		this.end_t = -1;
 		this.doc_Id = -1;
@@ -18,7 +18,7 @@ public class Slot {
 //	Full Constructor
 	Slot (int slot_ID, int start_t, int end_t, int doc_Id)
 	{
-		this.slot_ID = slot_ID;
+		this.slot_Id = slot_ID;
 		this.start_t = start_t;
 		this.end_t = end_t;
 		this.doc_Id = doc_Id;
@@ -33,12 +33,12 @@ public class Slot {
 	}	
 	
 	//Getters and Setters
-	public int getSlot_ID() {
-		return slot_ID;
+	public int getSlot_Id() {
+		return slot_Id;
 	}
 
-	public void setSlot_ID(int slot_ID) {
-		this.slot_ID = slot_ID;
+	public void setSlot_Id(int slot_ID) {
+		this.slot_Id = slot_ID;
 	}
 
 	public int getStart_t() {
@@ -67,7 +67,7 @@ public class Slot {
 	
 	@Override
 	public String toString() {
-		return "Slot [slot_ID=" + slot_ID + ", start_t=" + start_t + ", end_t=" + end_t + ", doc_Id=" + doc_Id + "]";
+		return "Slot [slot_ID=" + slot_Id + ", start_t=" + start_t + ", end_t=" + end_t + ", doc_Id=" + doc_Id + "]";
 	}
 
 }
