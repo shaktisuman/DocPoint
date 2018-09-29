@@ -1,7 +1,8 @@
-package userDAO;
+package bookDAO;
 
-import userDAO.Slot;
 import java.util.List;
+
+import bookDAO.Slot;
 
 public interface SlotDao {
 	

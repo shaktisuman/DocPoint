@@ -1,4 +1,4 @@
-package userDAO;
+package bookDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bookDAO.Slot;
 import db.DbManager;
 import domain.login.Login;
-import userDAO.Slot;
 
 public class SlotDaoImpl implements SlotDao {
 	static Connection conn;

@@ -1,4 +1,4 @@
-package userDAO;
+package bookDAO;
 
 public class Slot {
 	
