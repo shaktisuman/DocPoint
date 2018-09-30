@@ -1,21 +1,29 @@
-#home {
-	float:right;
-}
-
 #logout {
 	float:right;
 }
 
+#home {
+	float:right;
+	position:absolute;
+	right:75px;
+}
+
 #lblHi {
 	position: absolute;
-	top:5px;
+	top:10px;
 	left:10px;
 }
 
-#lblDocPick,#docList {
+#lblDocPick {
 	position:absolute;
-	top:25px;
+	top:45px;
 	left:10px;
+}
+
+#docList {
+	position:absolute;
+	top:45px;
+	left:150px;
 }
 
 #calHdr {
@@ -28,16 +36,17 @@
 	position:absolute;
 	top:125px;
 	left:10px;
-	width:950px;
-	height:600px;
+	width:1260px;
+	height:500px;
 }
 
 .groove {
 	border-style: groove;
 	}
 	
-.days {
+.row1 {
 	border-style: groove;
 	float:left;
-	
+	height:120px;
+	width:120px;
 }
