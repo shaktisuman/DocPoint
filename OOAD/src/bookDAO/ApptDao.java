@@ -17,6 +17,4 @@ public interface ApptDao {
 	
 	public int getBookedApptForDocOnDate(int Doc_Id, String Date);
 	
-	public List<Slot> getAvailSlotsForDocOnDate(int Doc_Id, String Date);
-	
 }
