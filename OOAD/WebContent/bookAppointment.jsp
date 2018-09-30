@@ -8,15 +8,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-var d = new Date();
+	var d = new Date();
     n = d.getMonth();
     if(n==1 || n==3 || n==5 || n==8 || n==10) 
     {
     	$("#d31").hide();
     }
-    /* $("#button").click(function(){
-        $("#p").hide();
-    }); */
+    
 });
 </script>
 </head>
@@ -34,8 +32,8 @@ var d = new Date();
 </select>
 <header id='calHdr'><h4>Pick a Date</h4></header>
 <section id='cal' class='groove'>
-<section id='d1' class = 'row1'><center>1</center></section>
-<section id='d2' class = 'row1'><center>2</center></section>
+<section id='d1' class = 'row1'>1</section>
+<section id='d2' class = 'row1'>2</section>
 <section id='d3' class = 'row1'>3</section>
 <section id='d4' class = 'row1'>4</section>
 <section id='d5' class = 'row1'>5</section>
