@@ -36,22 +36,15 @@ public class LoginController extends HttpServlet {
 		PatientDao patientDao = new PatientDaoImpl();
 		Patient a = patientDao.validatePatient(login);
 	
-		
-		
-		
-		
-		
-		
-		System.out.println(submitType);
-		System.out.println(a.getName());
+	
 		if(submitType.equals("login") && a!=null && a.getName()!= null  && !a.getName().equals("")){
 			
 			request.setAttribute("message", "Hello "+a.getName());
 			request.setAttribute("name", a.getName());
-			request.setAttribute("birthdate", "01/01/2000");
+			/*request.setAttribute("birthdate", "01/01/2000");
 			request.setAttribute("address", "123 Main St.");
 			request.setAttribute("city", "Richardson");
-			request.setAttribute("Gender", "F");
+			request.setAttribute("Gender", "F"); */
 			Cookie ck=new Cookie("username",username);
 			response.addCookie(ck);
 			request.getRequestDispatcher("PatientHome.jsp").forward(request, response);

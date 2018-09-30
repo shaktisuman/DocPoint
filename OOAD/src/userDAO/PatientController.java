@@ -74,28 +74,32 @@ public class PatientController extends HttpServlet {
 			
 			if(submitType.equals("submit") && p!=null && p.getName()!=null){
 				
-				String name = request.getParameter("name");
-				if(request.getParameter("name") != null){
+				
+				if(request.getParameter("name") != null && !request.getParameter("name").equals("")){
 					p.setName(request.getParameter("name") );
 				}
-				if(request.getParameter("birthday") != null ){
+				if(request.getParameter("birthday") != null && !request.getParameter("birthday").equals("")){
+					
 					p.setBirthdate(request.getParameter("birthday"));
 				}
-				if(request.getParameter("street")!=null){
+				if(request.getParameter("street")!=null && !request.getParameter("street").equals("")){
 					p.setAddress(request.getParameter("street"));
 				}
-				if(request.getParameter("city") != null){
+				if(request.getParameter("city") != null && !request.getParameter("city").equals("")){
 					p.setCity(request.getParameter("city"));
 				}
-				if(request.getParameter("sickness") != null){
+				if(request.getParameter("sickness") != null && !request.getParameter("sickness").equals("")){
 					p.setMedicalHistory(request.getParameter("sickness"));
 				}
-				if(request.getParameter("gender")!= null){
+				if(request.getParameter("gender")!= null && !request.getParameter("gender").equals("")){
 					p.setGender(request.getParameter("gender"));
 				}
 				
 				request.setAttribute("name", p.getName());
 				request.setAttribute("address", p.getAddress());
+				request.setAttribute("birthdate", p.getBirthdate());
+				request.setAttribute("city", p.getCity());
+				request.setAttribute("Gender", p.getGender());
 				request.setAttribute("medicalhistory",p.getMedicalHistory());
 				request.setAttribute("message", "Hello "+p.getName());
 				patientDao.updatePatient(p);

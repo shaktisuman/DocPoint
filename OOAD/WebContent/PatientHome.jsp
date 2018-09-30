@@ -31,7 +31,7 @@
               <p>Birthdate : ${birthdate}</p>
               <p>Address : ${address} City : ${city} </p>
               <p>Medicalhistory : ${medicalhistory}</p>
-              <p>Gender: ${gender}</p>
+              <p>Gender: ${Gender}</p>
           </section>
           </div>
          
