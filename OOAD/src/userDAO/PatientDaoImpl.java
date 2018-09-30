@@ -156,7 +156,7 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("insert into Patients (name,username,password,Secret_Q,Secret_A,Birthdate,Address,City,State,MedicalHistory,gender) values(?,?,?,?,?,?,?,?,?,?)");
+			ps =conn.prepareStatement("insert into Patients (name,username,password,Secret_Q,Secret_A,Birthdate,Address,City,State,MedicalHistory,gender) values(?,?,?,?,?,?,?,?,?,?,?)");
 //			ps.setString(1, Integer.toString(p.getID()));
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getUsername());
@@ -167,7 +167,8 @@ public class PatientDaoImpl implements PatientDao {
 			ps.setString(7, p.getAddress());
 			ps.setString(8, p.getCity());
 			ps.setString(9, p.getState());
-			ps.setString(10, p.getGender());
+			ps.setString(10, p.getMedicalHistory());
+			ps.setString(11, p.getGender());
 			
 			status = ps.executeUpdate();
 			conn.close();
