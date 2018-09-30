@@ -12,13 +12,29 @@ $(document).ready(function(){
     n = d.getMonth();
     if(n==1 || n==3 || n==5 || n==8 || n==10) 
     {
-    	$("#d31").hide();
+    	$("#31").hide();
     }
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    	  "July", "August", "September", "October", "November", "December"
+    	];
+    $('#m').html(monthNames[d.getMonth()]);
     $(document).on("click",".row1", function (event) {
-        var day = event.target.id;
-        modal.style.display = "block";
-        //pop-up model dialog here
+    	var doc = $('#docList').find(":selected").text();
+    	if(doc=="Pick a Doctor")
+    	{
+    		alert("Pick a Doctor to Book an Appointment!");
+    	}
+    	else {
+    		var day = event.target.id;
+            var str = monthNames[d.getMonth()] + " - " + day;
+            $('#d').html(str);
+            modal.style.display = "block";
+    	}
     });
+    $( "#docList" ).change(function() {
+    	var doc = $('#docList').find(":selected").text();
+    	alert( "Booking for: " + doc );
+    	});
     
 });
 </script>
@@ -76,7 +92,7 @@ body {
 
 <a id='logout' href="logout.jsp"> Logout</a>
 
-<a id = 'home' href="PatientHome.jsp">Home </a>
+<a id = 'home' href="welcome.jsp">Home </a>
 
 <center><b><h2>Book an Appointment!</h2></b></center>
 
@@ -89,40 +105,40 @@ body {
 <option value="Doc3">Doc 3</option>
 </select>
 
-<header id='calHdr'><h4>Pick a Date</h4></header>
+<header id='calHdr'><b>Pick a Date: </b><b id='m'></b></header>
 
 <section id='cal' class='groove'>
-<section id='d1' class = 'row1'>1</section>
-<section id='d2' class = 'row1'>2</section>
-<section id='d3' class = 'row1'>3</section>
-<section id='d4' class = 'row1'>4</section>
-<section id='d5' class = 'row1'>5</section>
-<section id='d6' class = 'row1'>6</section>
-<section id='d7' class = 'row1'>7</section>
-<section id='d8' class = 'row1'>8</section>
-<section id='d9' class = 'row1'>9</section>
-<section id='d10' class = 'row1'>10</section>
-<section id='d12' class = 'row1'>11</section>
-<section id='d12' class = 'row1'>12</section>
-<section id='d13' class = 'row1'>13</section>
-<section id='d14' class = 'row1'>14</section>
-<section id='d15' class = 'row1'>15</section>
-<section id='d16' class = 'row1'>16</section>
-<section id='d17' class = 'row1'>17</section>
-<section id='d18' class = 'row1'>18</section>
-<section id='d19' class = 'row1'>19</section>
-<section id='d20' class = 'row1'>20</section>
-<section id='d21' class = 'row1'>21</section>
-<section id='d22' class = 'row1'>22</section>
-<section id='d23' class = 'row1'>23</section>
-<section id='d24' class = 'row1'>24</section>
-<section id='d25' class = 'row1'>25</section>
-<section id='d26' class = 'row1'>26</section>
-<section id='d27' class = 'row1'>27</section>
-<section id='d28' class = 'row1'>28</section>
-<section id='d29' class = 'row1'>29</section>
-<section id='d30' class = 'row1'>30</section>
-<section id='d31' class = 'row1'>31</section>
+<section id='1' class = 'row1'>1</section>
+<section id='2' class = 'row1'>2</section>
+<section id='3' class = 'row1'>3</section>
+<section id='4' class = 'row1'>4</section>
+<section id='5' class = 'row1'>5</section>
+<section id='6' class = 'row1'>6</section>
+<section id='7' class = 'row1'>7</section>
+<section id='8' class = 'row1'>8</section>
+<section id='9' class = 'row1'>9</section>
+<section id='10' class = 'row1'>10</section>
+<section id='12' class = 'row1'>11</section>
+<section id='12' class = 'row1'>12</section>
+<section id='13' class = 'row1'>13</section>
+<section id='14' class = 'row1'>14</section>
+<section id='15' class = 'row1'>15</section>
+<section id='16' class = 'row1'>16</section>
+<section id='17' class = 'row1'>17</section>
+<section id='18' class = 'row1'>18</section>
+<section id='19' class = 'row1'>19</section>
+<section id='20' class = 'row1'>20</section>
+<section id='21' class = 'row1'>21</section>
+<section id='22' class = 'row1'>22</section>
+<section id='23' class = 'row1'>23</section>
+<section id='24' class = 'row1'>24</section>
+<section id='25' class = 'row1'>25</section>
+<section id='26' class = 'row1'>26</section>
+<section id='27' class = 'row1'>27</section>
+<section id='28' class = 'row1'>28</section>
+<section id='29' class = 'row1'>29</section>
+<section id='30' class = 'row1'>30</section>
+<section id='31' class = 'row1'>31</section>
 </section>
 
 <!-- The Modal -->
@@ -131,16 +147,16 @@ body {
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Pick a Slot</h2>
+    <b>Pick a Slot for Day:</b><b id='d'></b>
     <p>Available:
     <select id='slotList'>
-    	<option value="choose" selected>Choose:</option>
+    	<option value="choose" selected>Choose</option>
 		<option value="Slot1">Slot 1</option>
 		<option value="Slot2">Slot 2</option>
 		<option value="Slot3">Slot 3</option>
 	</select>
     </p>
-    <button> Book!</button>
+    <button id="bk"> Book!</button>
     <button id="cls"> Close</button>
   </div>
 
@@ -156,6 +172,18 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+}
+
+bk.onclick = function() {
+	var sel = $('#slotList').find(":selected").text();
+	if (sel=="Choose")
+		{
+		alert("Choose a slot!");
+		}
+	else {
+		alert("Booked for:" + sel);
+	    modal.style.display = "none";
+	}
 }
 
 cls.onclick = function() {
