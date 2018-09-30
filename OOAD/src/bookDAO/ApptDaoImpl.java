@@ -269,4 +269,5 @@ public class ApptDaoImpl implements ApptDao {
 				
 		return numBooked;
 	}
+	
 }

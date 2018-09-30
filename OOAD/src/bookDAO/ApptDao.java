@@ -17,4 +17,5 @@ public interface ApptDao {
 	
 	public int getBookedApptForDocOnDate(int Doc_Id, String Date);
 	
+	
 }
