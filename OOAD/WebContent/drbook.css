@@ -37,16 +37,21 @@
 	top:125px;
 	left:10px;
 	width:1260px;
-	height:500px;
+	height:380px;
 }
 
 .groove {
-	border-style: groove;
+	
 	}
 	
 .row1 {
+	background-color:lightblue;
 	border-style: groove;
 	float:left;
 	height:120px;
 	width:120px;
+	vertical-align: middle;
+}
+.row1:hover {
+    background-color: yellow;
 }
