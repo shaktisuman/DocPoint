@@ -20,7 +20,7 @@
      </header>
      
       <h2>${message} </h2> 
-      <button>Book Appointment</button>
+      <button onclick="location.href = 'bookAppointment.jsp';" id="bookApp">Book Appointment</button>
       <div class="row1">
             
               <div class="box">
