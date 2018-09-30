@@ -182,7 +182,7 @@ hr {
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
       
-      <label for="name"><b>Username</b></label>
+      <label for="name"><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required></div>
       
       <label for="username"><b>Username</b></label>
