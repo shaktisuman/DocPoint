@@ -37,8 +37,9 @@ public class PatientDaoImpl implements PatientDao {
 							
 				Patient p = new Patient(Integer.parseInt(rs.getString("ID")),
 						rs.getString("name"), rs.getString("username"),
-						rs.getString("password"), rs.getString("info"),
-						rs.getString("Secret_Q"),rs.getString("Secret_A"));
+						rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+						rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
+						rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));
 				
 				patient_list.add(p);
 			}
@@ -60,8 +61,9 @@ public class PatientDaoImpl implements PatientDao {
 		{
 			p = new Patient(Integer.parseInt(rs.getString("ID")),
 					rs.getString("name"), rs.getString("username"),
-					rs.getString("password"), rs.getString("info"),
-					rs.getString("Secret_Q"),rs.getString("Secret_A"));			
+					rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+					rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
+					rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));		
 		}catch(Exception e)
 		{
 			System.out.println(e);
@@ -128,8 +130,9 @@ public class PatientDaoImpl implements PatientDao {
 			while(rs.next()){
 				p = new Patient(Integer.parseInt(rs.getString("ID")),
 						rs.getString("name"), rs.getString("username"),
-						rs.getString("password"), rs.getString("info"),
-						rs.getString("Secret_Q"),rs.getString("Secret_A"));
+						rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+						rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
+						rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));
 			}
 			
 			conn.close();
@@ -153,14 +156,18 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("insert into Patients (name,username,password,info,Secret_Q,Secret_A) values(?,?,?,?,?,?)");
+			ps =conn.prepareStatement("insert into Patients (name,username,password,Secret_Q,Secret_A,Birthdate,Address,City,State,MedicalHistory,gender) values(?,?,?,?,?,?,?,?,?,?)");
 //			ps.setString(1, Integer.toString(p.getID()));
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getUsername());
 			ps.setString(3, p.getPassword());
-			ps.setString(4, p.getInfo());
-			ps.setString(5, p.getSecret_Q());
-			ps.setString(6, p.getSecret_A());
+			ps.setString(4, p.getSecret_Q());
+			ps.setString(5, p.getSecret_A());
+			ps.setString(6, p.getBirthdate());
+			ps.setString(7, p.getAddress());
+			ps.setString(8, p.getCity());
+			ps.setString(9, p.getState());
+			ps.setString(10, p.getGender());
 			
 			status = ps.executeUpdate();
 			conn.close();
@@ -183,14 +190,20 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("update Patients set name = ?,username=?,password=?,info=?,Secret_Q=?,Secret_A=? where ID =?");
+			ps =conn.prepareStatement("update Patients set name = ?,username=?,password=?, Secret_Q=?,"
+					+ "Secret_A=?,Birthdate =? , Address = ?, City = ?, State = ?, MedicalHistory =?,  gender =? where ID =?");
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getUsername());
 			ps.setString(3, p.getPassword());
-			ps.setString(4, p.getInfo());
-			ps.setString(5, p.getSecret_Q());
-			ps.setString(6, p.getSecret_A());
-			ps.setString(7, Integer.toString(p.getID()));
+			ps.setString(4, p.getSecret_Q());
+			ps.setString(5, p.getSecret_A());
+			ps.setString(6, p.getBirthdate());
+			ps.setString(7, p.getAddress());
+			ps.setString(8, p.getCity());
+			ps.setString(9, p.getState());
+			ps.setString(10, p.getMedicalHistory());
+			ps.setString(11, p.getGender());
+			ps.setString(12, Integer.toString(p.getID()));
 			
 			ps.executeUpdate();
 			conn.close();

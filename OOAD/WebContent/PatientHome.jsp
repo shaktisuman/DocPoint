@@ -19,7 +19,7 @@
      <h1>CLIENT  INFORMATION</h1>
      </header>
      
-      <h2>${welcome} </h2> 
+      <h2>${message} </h2> 
       <button>Book Appointment</button>
       <div class="row1">
             
@@ -27,7 +27,7 @@
               <section>
               <h1>Profile</h1>
               
-              <p Id="name">Name : ${name}  </p>
+              <p >Name : ${name}  </p>
               <p>Birthdate : ${birthdate}</p>
               <p>Address : ${address} City : ${city} </p>
               <p>Medicalhistory : ${medicalhistory}</p>

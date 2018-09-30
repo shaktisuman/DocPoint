@@ -2,57 +2,28 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-   <head>
-       <meta charset="utf-8">
-       <title></title>
-       <link rel="stylesheet" href="./css/client.css">
-   </head>
-    <body>
-     <nav>
-          <ul>
-              <li><a href="logout.jsp">logout</a></li>
-              <li><a href="PatientProfileEdit.jsp">Edit Profile</a></li>
-              
-          </ul>
-      </nav> 
-     <header>
-     <h1>CLIENT  INFORMATION</h1>
-     </header>
-     
-      <h2>${welcome} </h2> 
-      <button>Book Appointment</button>
-      <div class="row1">
-            
-              <div class="box">
-              <section>
-              <h1>Profile</h1>
-              <p style="font-size:0px"  Id="username">${username}  </p>
-              <p style="font-size:0px"  Id="password">${password}  </p>
-              <p Id="name">Name : ${name}  </p>
-              <p>Birthdate : ${birthdate}</p>
-              <p>Address : ${address} City : ${city} </p>
-              <p>Medicalhistory : ${medicalhistory}</p>
-              <p>Gender: ${gender}</p>
-          </section>
-          </div>
-         
-          <div class="box">
-              <section>
-              <h1>Appointments</h1>
-              <div class="btngrp">
-              <button>Reschedule</button>
-              <button>Cancel</button>
-              </div>
-              
-              <p>some text <br> </p>
-              <p>some text</p>
-              <p>some text</p>
-          </section>
-          </div>
-      </div>
-      
-     
-      
-      
-    </body>
+<form name="loginform" action="PatientController" method="post" >
+    <h1>Edit Profile</h1>
+    
+        Name <br>
+        <input type="text" name="name"><br>
+        Date of Birth(MM/DD/YYYY)
+        <input type="text" name="birthday"><br>
+        Address: <input type="text" name="street"> City: <input type="text" name="city"> State:<input type="text" name="state"><br>
+        Gender: <input type="text" name="gender"><br>
+        Medical History <br>
+        <input type="checkbox" name="sickness" value="cancer"> Cancer
+        <input type="checkbox" name="sickness" value="fever"> Fever/Cold
+        <input type="checkbox" name="sickness" value="diabetes"> Diabetes <br>
+        <input type="checkbox" name="sickness" value="bleeding"> Bleeding Problems 
+        <input type="checkbox" name="sickness" value="asthma"> Asthma
+        <input type="checkbox" name="sickness" value="diabetes"> Diabetes <br>
+        <input type="checkbox" name="sickness" value="heart"> Heart 
+        <input type="checkbox" name="sickness" value="highBlood"> High Blood Pressure
+        <input type="checkbox" name="sickness" value="Stroke"> Stroke <br>
+    <input type="submit" name="submit" value="submit">
+   
+    </form>
+    
+   
 </html>
