@@ -19,9 +19,9 @@ public class Patient {
 //	Empty Constructor
 	Patient (){
 		this.ID = 0;
-		this.name = "";
+		this.name = null;
 		//this.info = "";
-		this.username = "";
+		this.username = null;
 		this.password = "";
 		this.Secret_Q = "";
 		this.Secret_A = "";
