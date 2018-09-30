@@ -178,12 +178,12 @@ hr {
 <body>
 <div class="container">
 <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
-      <h1>Sign Up</h1>
+	  <h1>Sign Up</h1>
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
       
-      <label for="name"><b>Username</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required></div>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="name" required>
       
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required><div id="username_error"></div>
@@ -221,7 +221,6 @@ hr {
     <div class="container signin">
     	<p>Already have an account? <a href="login.jsp">Sign in</a>.</p>
   	</div>
-  	
 </form>
 </div>
 
