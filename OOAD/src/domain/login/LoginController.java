@@ -44,7 +44,8 @@ public class LoginController extends HttpServlet {
 		
 		System.out.println(submitType);
 		System.out.println(a.getName());
-		if(submitType.equals("login") && a!=null && a.getName()!=null){
+		if(submitType.equals("login") && a!=null && a.getName()!=null && !a.getName().equals("")){
+			
 			request.setAttribute("message", "Hello "+a.getName());
 			request.setAttribute("name", a.getName());
 			request.setAttribute("birthdate", "01/01/2000");
