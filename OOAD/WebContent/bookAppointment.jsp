@@ -6,8 +6,11 @@
 <link rel="stylesheet" type="text/css" href="drbook.css">
 <title>Book an Appointment</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
 <script>
 $(document).ready(function(){
+	$('#lblHi').html("Hi " + $.cookie("username"));
 	var d = new Date();
     n = d.getMonth();
     if(n==1 || n==3 || n==5 || n==8 || n==10) 
@@ -88,7 +91,7 @@ body {
 </head>
 <body>
 
-<label id='lblHi'>Hi ABC!</label>
+<label id='lblHi'></label>
 
 <a id='logout' href="logout.jsp"> Logout</a>
 
