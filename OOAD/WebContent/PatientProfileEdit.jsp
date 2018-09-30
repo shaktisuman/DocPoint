@@ -9,7 +9,7 @@
         <input type="text" name="name"><br>
         Date of Birth(MM/DD/YYYY)
         <input type="text" name="birthday"><br>
-        Address: <input type="text" name="street"> City: <input type="text" name="city"> State:<input type="text" name="state"><br>
+        Address: <input type="text" name="street"> City: <input type="text" name="city"> <br>
         Gender: <input type="text" name="gender"><br>
         Medical History <br>
         <input type="checkbox" name="sickness" value="cancer"> Cancer

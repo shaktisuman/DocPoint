@@ -75,7 +75,7 @@ public class PatientController extends HttpServlet {
 			if(submitType.equals("submit") && p!=null && p.getName()!=null){
 				
 				
-				if(request.getParameter("name") != null && !request.getParameter("name").equals("")){
+				if(request.getParameter("name") != null &&  !request.getParameter("name").equals("")){
 					p.setName(request.getParameter("name") );
 				}
 				if(request.getParameter("birthday") != null && !request.getParameter("birthday").equals("")){

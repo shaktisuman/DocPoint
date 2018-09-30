@@ -45,7 +45,9 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("address", "123 Main St.");
 			request.setAttribute("city", "Richardson");
 			request.setAttribute("Gender", "F"); */
+			//Added Cookie
 			Cookie ck=new Cookie("username",username);
+			
 			response.addCookie(ck);
 			request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
 		}else if(submitType.equals("register")){
