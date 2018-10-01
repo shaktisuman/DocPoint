@@ -20,7 +20,7 @@
      </header>
      
       <h2>${message} </h2> 
-      <button onclick="location.href = 'bookAppointment.jsp';" id="bookApp">Book Appointment</button>
+      <button class="button" style="vertical-align:middle" onclick="location.href = 'bookAppointment.jsp';" id="bookApp">Book Appointment</button>
       <div class="row1">
             
               <div class="box">
@@ -39,8 +39,8 @@
               <section>
               <h1>Appointments</h1>
               <div class="btngrp">
-              <button>Reschedule</button>
-              <button>Cancel</button>
+              <button class="button" style="vertical-align:middle">Reschedule</button>
+              <button class="button" style="vertical-align:middle">Cancel</button>
               </div>
               
               <p>some text <br> </p>

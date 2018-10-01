@@ -11,6 +11,10 @@
 <title>Dr. Book Login</title>
 <style>
 /* Style all input fields */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+html{
+font-family: 'Montserrat', Arial, sans-serif;
+}
 input {
     width: 100%;
     padding: 12px;
