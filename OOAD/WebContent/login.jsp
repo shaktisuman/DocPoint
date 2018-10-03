@@ -10,6 +10,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dr. Book Login</title>
 <style>
+/*Style image*/
+img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
 /* Style all input fields */
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 html{
@@ -79,6 +93,10 @@ input[type=submit] {
 
 
 <body>
+
+<a href="login.jsp">
+  <img src="http://i1383.photobucket.com/albums/ah307/yaygreat/logo_zpshutgkrz5.png" alt="Dr. Book" style="width:150px">
+</a>
 
 <h3>Welcome to Dr. Book!</h3>
 <p>Please Login</p>
