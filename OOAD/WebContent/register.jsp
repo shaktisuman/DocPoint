@@ -7,6 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
 <style>
+/*Style image*/
+img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
@@ -176,6 +191,10 @@ hr {
 
 
 <body>
+<a href="login.jsp">
+  <img src="http://i1383.photobucket.com/albums/ah307/yaygreat/logo_zpshutgkrz5.png" alt="Dr. Book" style="width:150px">
+</a>
+
 <div class="container">
 <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
 	  <h1>Sign Up</h1>
