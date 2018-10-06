@@ -79,7 +79,7 @@ INSERT INTO PATIENT VALUES ('1', 'Linh Truong', 'linh@emailcom', 'password',  'T
 INSERT INTO PATIENT VALUES ('2', 'Max Chen', 'max@email.com', 'password',  'This is my info for Max', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
 INSERT INTO PATIENT VALUES ('3', 'Nancy Xie', 'nancyX@email.com', 'password',  'This is my info for Nancy', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
 
-INSERT INTO APPT VALUES ('1', '2018-09-21', '1', '4', '2');
-INSERT INTO APPT VALUES ('2', '2018-09-21', '2', '5', '2');
-INSERT INTO APPT VALUES ('3', '2018-09-22', '1', '6', '2');
-INSERT INTO APPT VALUES ('4', '2018-09-22', '3', '5', '3');
+INSERT INTO APPT VALUES ('1', '2018-09-21', '1', '1', '2');
+INSERT INTO APPT VALUES ('2', '2018-09-21', '2', '2', '2');
+INSERT INTO APPT VALUES ('3', '2018-09-22', '1', '3', '2');
+INSERT INTO APPT VALUES ('4', '2018-09-22', '3', '2', '3');
