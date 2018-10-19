@@ -20,7 +20,6 @@ public class Patient {
 	Patient (){
 		this.ID = 0;
 		this.name = null;
-		//this.info = "";
 		this.username = null;
 		this.password = "";
 		this.Secret_Q = "";
@@ -59,8 +58,7 @@ public class Patient {
 
 //	Constructor without ID
 	Patient (String name,String username,
-			String password, String info,
-			String Secret_Q, String Secret_A, 
+			String password,String Secret_Q, String Secret_A, 
 			String Birthdate, String Address, String City,
 			String State,String MedicalHistory, String gender)
 	{

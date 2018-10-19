@@ -25,16 +25,13 @@ public class PatientDemo {
 		
 		PatientDao patientDao = new PatientDaoImpl();
 		
-		System.out.println("======== Add 3 new patients ========");
-		Patient linh = new Patient("Linh Truong","linhtruong@gmail.com","12345","This is a patient","How are you?","I'm Ok");
-		Patient max = new Patient("Max Chen","maxchen@gmail.com","12345","This is a patient","How are you?","I'm Ok");
-		Patient shakti = new Patient("Shakti","shakti@gmail.com","321","This is another patient","How are you?","I'm Ok");
-		patientDao.addPatient(linh);
-		patientDao.addPatient(max);
+		System.out.println("======== Add 1 new patient ========");
+		Patient shakti = new Patient("Shakti","shakti@gmail.com","321","Q","A","1-1-1990","Address","City","State","History","Gender");
 		patientDao.addPatient(shakti);
 		
+		
 		System.out.println("======== Validate Patient Login ========");
-		Login login = new Login("linhtruong@gmail.com","12345");
+		Login login = new Login("max@email.com","password");
 		Patient p4 = patientDao.validatePatient(login);
 		System.out.println(p4);		
 		
@@ -47,13 +44,12 @@ public class PatientDemo {
 		Patient p1 = patientDao.getPatient(1);
 		System.out.println(p1);
 		
-		System.out.println("======== Get Patient by email: linhtruong@gmail.com ========");
-		Patient p2 = patientDao.getPatient("linhtruong@gmail.com");
+		System.out.println("======== Get Patient by email: max@email.com ========");
+		Patient p2 = patientDao.getPatient("max@email.com");
 		System.out.println(p2);
 
 		System.out.println("======== Update Patient Shakti ========");
 		Patient p3_new = patientDao.getPatient("shakti@gmail.com");
-		p3_new.setInfo("This is an extreme patient");
 		patientDao.updatePatient(p3_new);
 		Patient p3_update = patientDao.getPatient("shakti@gmail.com");
 		System.out.println(p3_update);
@@ -65,8 +61,8 @@ public class PatientDemo {
 			System.out.println("Shakti has been no longer in database");
 		}
 		
-		System.out.println("======== Delete Other Patients ========");
-		patientDao.deleteAllPatients();
+//		System.out.println("======== Delete Other Patients ========");
+//		patientDao.deleteAllPatients();
 	
 	}
 }

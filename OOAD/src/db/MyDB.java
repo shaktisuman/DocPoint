@@ -10,11 +10,11 @@ package db;
 public interface MyDB {
 
 	String USER="root";
-//	String PASS="root";
+	String PASS="root";
 //	String CONN_URL="jdbc:mysql://127.0.0.1:3306/coursedatabase";
 	
-	String PASS="12345";
-	String CONN_URL="jdbc:mysql://127.0.0.1:3306/coursedatabase?allowMultiQueries=true";
+//	String PASS="12345";
+	String CONN_URL="jdbc:mysql://127.0.0.1:3306/DRBOOK?allowMultiQueries=true";
 	
 }
 /**

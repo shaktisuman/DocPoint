@@ -21,25 +21,24 @@ public class PatientDaoImpl implements PatientDao {
 	public List<Patient> getAllPatients() {
 		/**
 		 * This method get all patients
-		 * @param String username
-		 * @return Patient
+		 * @return List of Patients
 		 * @exception com.mysql.jdbc.exceptions
 		 */
 		List<Patient> patient_list = new ArrayList<Patient>();
 		try
 		{
 			conn 	= db.getConnection();
-			ps		= conn.prepareStatement("select * from Patients");
+			ps		= conn.prepareStatement("select * from PATIENT");
 			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
 							
-				Patient p = new Patient(Integer.parseInt(rs.getString("ID")),
-						rs.getString("name"), rs.getString("username"),
-						rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+				Patient p = new Patient(Integer.parseInt(rs.getString("Patient_Id")),
+						rs.getString("Name"), rs.getString("Username"),
+						rs.getString("Password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
 						rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
-						rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));
+						rs.getString("State"),rs.getString("Medical_Hist"),rs.getString("Gender"));
 				
 				patient_list.add(p);
 			}
@@ -59,11 +58,11 @@ public class PatientDaoImpl implements PatientDao {
 		Patient p = new Patient();
 		try
 		{
-			p = new Patient(Integer.parseInt(rs.getString("ID")),
-					rs.getString("name"), rs.getString("username"),
-					rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+			p = new Patient(Integer.parseInt(rs.getString("Patient_Id")),
+					rs.getString("Name"), rs.getString("Username"),
+					rs.getString("Password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
 					rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
-					rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));		
+					rs.getString("State"),rs.getString("Medical_Hist"),rs.getString("Gender"));		
 		}catch(Exception e)
 		{
 			System.out.println(e);
@@ -87,7 +86,7 @@ public class PatientDaoImpl implements PatientDao {
 		try
 		{
 			conn 	= db.getConnection();
-			ps		= conn.prepareStatement("select * from Patients where username=?");
+			ps		= conn.prepareStatement("select * from PATIENT where Username=?");
 			ps.setString(1, username);
 			
 			ResultSet rs = ps.executeQuery();
@@ -122,17 +121,17 @@ public class PatientDaoImpl implements PatientDao {
 		try
 		{
 			conn 	= db.getConnection();
-			ps		= conn.prepareStatement("select * from Patients where ID=?");
+			ps		= conn.prepareStatement("select * from PATIENT where Patient_Id=?");
 			ps.setString(1, Integer.toString(ID));
 			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
-				p = new Patient(Integer.parseInt(rs.getString("ID")),
-						rs.getString("name"), rs.getString("username"),
-						rs.getString("password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
+				p = new Patient(Integer.parseInt(rs.getString("Patient_Id")),
+						rs.getString("Name"), rs.getString("Username"),
+						rs.getString("Password"),  rs.getString("Secret_Q"),rs.getString("Secret_A"),
 						rs.getString("Birthdate"),rs.getString("Address"),rs.getString("City"),
-						rs.getString("State"),rs.getString("MedicalHistory"),rs.getString("gender"));
+						rs.getString("State"),rs.getString("Medical_Hist"),rs.getString("Gender"));
 			}
 			
 			conn.close();
@@ -156,7 +155,7 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("insert into Patients (name,username,password,Secret_Q,Secret_A,Birthdate,Address,City,State,MedicalHistory,gender) values(?,?,?,?,?,?,?,?,?,?,?)");
+			ps =conn.prepareStatement("insert into PATIENT (Name,Username,Password,Secret_Q,Secret_A,Birthdate,Address,City,State,Medical_Hist,Gender) values(?,?,?,?,?,?,?,?,?,?,?)");
 //			ps.setString(1, Integer.toString(p.getID()));
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getUsername());
@@ -191,8 +190,8 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("update Patients set name = ?,username=?,password=?, Secret_Q=?,"
-					+ "Secret_A=?,Birthdate =? , Address = ?, City = ?, State = ?, MedicalHistory =?,  gender =? where ID =?");
+			ps =conn.prepareStatement("update PATIENT set Name = ?,Username=?,Password=?, Secret_Q=?,"
+					+ "Secret_A=?,Birthdate =? , Address = ?, City = ?, State = ?, Medical_Hist =?,  Gender =? where Patient_Id =?");
 			ps.setString(1, p.getName());
 			ps.setString(2, p.getUsername());
 			ps.setString(3, p.getPassword());
@@ -224,7 +223,7 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("delete from Patients where username = ?;ALTER TABLE Patients AUTO_INCREMENT = 1;");
+			ps =conn.prepareStatement("delete from PATIENT where Username = ?;ALTER TABLE PATIENT AUTO_INCREMENT = 1;");
 			ps.setString(1, p.getUsername());
 			ps.executeUpdate();
 			conn.close();
@@ -244,7 +243,7 @@ public class PatientDaoImpl implements PatientDao {
 		try{
 			conn = db.getConnection();
 
-			ps =conn.prepareStatement("delete from Patients;ALTER TABLE Patients AUTO_INCREMENT = 1;");
+			ps =conn.prepareStatement("delete from PATIENT;ALTER TABLE PATIENT AUTO_INCREMENT = 1;");
 			ps.executeUpdate();
 			conn.close();
 		}catch(Exception e){
@@ -263,7 +262,7 @@ public class PatientDaoImpl implements PatientDao {
 		Patient p = new Patient();
 		try{
 			conn = db.getConnection();
-			ps =conn.prepareStatement("select * from Patients where username = ? and password = ?");
+			ps =conn.prepareStatement("select * from PATIENT where Username = ? and Password = ?");
 			ps.setString(1, login.getUsername());
 			ps.setString(2, login.getPassword());
 
