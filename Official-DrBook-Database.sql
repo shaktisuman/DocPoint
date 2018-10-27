@@ -68,16 +68,16 @@ CREATE TABLE APPT
 
 INSERT INTO DRBOOK_ADMIN VALUES ('1');
 
-INSERT INTO DOC VALUES ('1', 'John Smith', 'johnsmith@email.com', 'password', 'Pediatrician', 'I am a doctor that specializes in treating children.');
-INSERT INTO DOC VALUES ('2', 'Sarah Palmer', 'sarahpalmer@email.com', 'password',  'ENT', 'I am a doctor that specializes in ear, nose, throat.');
+INSERT INTO DOC VALUES ('1', 'John Smith', 'johnsmith@email.com', 'Password01', 'Pediatrician', 'I am a doctor that specializes in treating children.');
+INSERT INTO DOC VALUES ('2', 'Sarah Palmer', 'sarahpalmer@email.com', 'Password01',  'ENT', 'I am a doctor that specializes in ear, nose, throat.');
 
 INSERT INTO SLOT VALUES ('1', '540', '600', '1');
 INSERT INTO SLOT VALUES ('2', '600', '660', '1');
 INSERT INTO SLOT VALUES ('3', '480', '540', '2');
 
-INSERT INTO PATIENT VALUES ('1', 'Linh Truong', 'linh@emailcom', 'password', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
-INSERT INTO PATIENT VALUES ('2', 'Max Chen', 'max@email.com', 'password', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
-INSERT INTO PATIENT VALUES ('3', 'Nancy Xie', 'nancyX@email.com', 'password', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
+INSERT INTO PATIENT VALUES ('1', 'Linh Truong', 'linh@email.com', 'Password01', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
+INSERT INTO PATIENT VALUES ('2', 'Max Chen', 'max@email.com', 'Password01', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
+INSERT INTO PATIENT VALUES ('3', 'Nancy Xie', 'nancyX@email.com', 'Password01', 'Secret Q', 'Secret A', '11-11-1990', 'dummy address', 'city', 'state', 'med hist', 'gender');
 
 INSERT INTO APPT VALUES ('1', '2018-09-21', '1', '1', '1');
 INSERT INTO APPT VALUES ('2', '2018-09-21', '2', '2', '1');
