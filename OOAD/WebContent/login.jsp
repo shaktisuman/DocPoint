@@ -9,7 +9,7 @@
 <script type="text/javascript" src="script.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Dr. Book Login</title>
+<title>Patient Login</title>
 <style>
 /*Style image*/
 img {
