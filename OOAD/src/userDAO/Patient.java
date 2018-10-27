@@ -17,7 +17,7 @@ public class Patient {
 	private String gender;
 		
 //	Empty Constructor
-	Patient (){
+	public Patient (){
 		this.ID = 0;
 		this.name = null;
 		this.username = null;
@@ -34,7 +34,7 @@ public class Patient {
 	}
 	
 //	Full Constructor
-	Patient (int ID,
+	public Patient (int ID,
 			String name,String username,
 			String password, 
 			String Secret_Q, String Secret_A, 
@@ -57,7 +57,7 @@ public class Patient {
 	}
 
 //	Constructor without ID
-	Patient (String name,String username,
+	public Patient (String name,String username,
 			String password,String Secret_Q, String Secret_A, 
 			String Birthdate, String Address, String City,
 			String State,String MedicalHistory, String gender)
