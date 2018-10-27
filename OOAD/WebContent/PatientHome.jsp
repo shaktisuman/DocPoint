@@ -4,7 +4,7 @@
 <html>
    <head>
        <meta charset="utf-8">
-       <title></title>
+       <title>PatientHome</title>
        <link rel="stylesheet" href="./client.css">
    </head>
     <body>
