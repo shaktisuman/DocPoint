@@ -205,7 +205,7 @@ hr {
       <input type="text" placeholder="Enter Name" name="name" required>
       
       <label for="birthdate"><b>Birthdate</b></label><br><br> 
-      <input type="date" name="birthdate" id="birthate" required><br><br>
+      <input type="date" name="birthdate" id="birthdate" required><br><br>
 <!--       <input type="text" placeholder="Enter Birthdate" name="birthdate" id="birthate" required> -->
       
       <label for="gender"><b>Gender</b></label>
