@@ -54,12 +54,20 @@ public class LoginController extends HttpServlet {
 			a.setName(request.getParameter("name"));
 			a.setUsername(request.getParameter("username"));
 			a.setPassword(request.getParameter("password"));
+			a.setBirthdate(request.getParameter("birthdate"));
+			a.setAddress(request.getParameter("address"));
+			a.setCity(request.getParameter("city"));
+			a.setState(request.getParameter("state"));
+			a.setGender(request.getParameter("gender"));
+			a.setMedicalHistory(request.getParameter("sickness"));
+			a.setSecret_Q(request.getParameter("secretQ"));
+			a.setSecret_A(request.getParameter("secretanswer"));
 			patientDao.addPatient(a);
 			request.setAttribute("successMessage", "Registration done, please login!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else{
-			request.setAttribute("message", "Data Not Found! Please register!");
-			request.getRequestDispatcher("register.jsp").forward(request, response);
+			request.setAttribute("message", "Incorrect Username and/or Password!");
+			request.getRequestDispatcher("login.jsp").include(request, response);
 		}
 
 	}
