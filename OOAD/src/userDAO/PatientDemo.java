@@ -26,12 +26,12 @@ public class PatientDemo {
 		PatientDao patientDao = new PatientDaoImpl();
 		
 		System.out.println("======== Add 1 new patient ========");
-		Patient shakti = new Patient("Shakti","shakti@gmail.com","321","Q","A","1-1-1990","Address","City","State","History","Gender");
+		Patient shakti = new Patient("Shakti","shakti@gmail.com","Password01","Q","A","1-1-1990","Address","City","State","History","Gender");
 		patientDao.addPatient(shakti);
 		
 		
 		System.out.println("======== Validate Patient Login ========");
-		Login login = new Login("max@email.com","password");
+		Login login = new Login("max@email.com","Password01");
 		Patient p4 = patientDao.validatePatient(login);
 		System.out.println(p4);		
 		
