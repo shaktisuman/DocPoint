@@ -26,7 +26,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=date] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -204,8 +204,8 @@ hr {
       <label for="name"><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
       
-      <label for="birthdate"><b>Birthdate</b></label><br><br> 
-      <input type="date" name="birthdate" id="birthdate" required><br><br>
+      <label for="birthdate"><b>Birthdate [MM/DD/YYYY]</b></label><br><br> 
+      <input type="date" name="birthdate" id="birthate" required><br><br>
 <!--       <input type="text" placeholder="Enter Birthdate" name="birthdate" id="birthate" required> -->
       
       <label for="gender"><b>Gender</b></label>
@@ -243,10 +243,10 @@ hr {
       <input type="text" placeholder="Enter Username" name="username" required><div id="username_error"></div>
 
       <label for="password"><b>Password</b></label>
-      <input type="text" placeholder="Enter Password" name="password" id="password" required>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
       <label for="retry-passsword"><b>Repeat Password</b></label>
-      <input type="text" placeholder="Repeat Password" name="retry-password" id="retry-password" required><div id="password_error"></div>
+      <input type="password" placeholder="Repeat Password" name="retry-password" id="retry-password" required><div id="password_error"></div>
       
       <label for="secretquestion"><b>Secret Question</b></label>
       <br><select name = "secretquestion" id = "secretquestion" required>
