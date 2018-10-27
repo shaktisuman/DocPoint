@@ -197,31 +197,64 @@ hr {
 
 <div class="container">
 <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
-	  <h1>Sign Up</h1>
+	  <h1>Register</h1>
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
       
       <label for="name"><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
       
+      <label for="birthdate"><b>Birthdate</b></label>
+      <input type="text" placeholder="Enter Birthdate" name="birthdate" id="birthate" required>
+      
+      <label for="gender"><b>Gender</b></label>
+      <br><select name = "gender" id = "gender" required>
+  			<option value="male">Male</option>
+  			<option value="female">Female</option>
+  			<option value="other">Other</option>
+		  </select>
+	  <br>
+	  
+	  <label for="medicalhistory"><b>Medical History</b></label>
+	  <br><br>
+	  	<input type="checkbox" name="sickness" value="none"> None
+		<input type="checkbox" name="sickness" value="cancer"> Cancer
+		<input type="checkbox" name="sickness" value="fever"> Fever/Cold
+		<input type="checkbox" name="sickness" value="diabetes"> Diabetes
+		<input type="checkbox" name="sickness" value="bleeding"> Bleeding Problems <br><br>
+		<input type="checkbox" name="sickness" value="asthma"> Asthma 
+		<input type="checkbox" name="sickness" value="diabetes"> Diabetes
+		<input type="checkbox" name="sickness" value="heart"> Heart 
+		<input type="checkbox" name="sickness" value="highBlood"> High Blood Pressure
+		<input type="checkbox" name="sickness" value="Stroke"> Stroke
+      <br><br>
+      
+      <label for="street"><b>Address</b></label>
+      <input type="text" placeholder="Enter Address" name="street" id="street" required>
+      
+      <label for="city"><b>City</b></label>
+      <input type="text" placeholder="Enter City" name="city" id="city" required>
+      
+      <label for="state"><b>State</b></label>
+      <input type="text" placeholder="Enter State" name="state" id="state" required>
+      
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="username" required><div id="username_error"></div>
 
       <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      <input type="text" placeholder="Enter Password" name="password" id="password" required>
 
       <label for="retry-passsword"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="retry-password" id="retry-password" required><div id="password_error"></div>
+      <input type="text" placeholder="Repeat Password" name="retry-password" id="retry-password" required><div id="password_error"></div>
       
       <label for="secretquestion"><b>Secret Question</b></label>
-      <br><select>
-			<option value="select">------------- Make a Selection -------------</option>
-  			<option value="father">What is your father's middle name?</option>
-  			<option value="mother">What is your mother's maiden name?</option>
-  			<option value="street">What street did you grow up on?</option>
-  			<option value="city">In what city were you born?</option>
-		</select></br>
-		<br>
+      <br><select name = "secretquestion" id = "secretquestion" required>
+  			<option value="fathermiddle">What is your father's middle name?</option>
+  			<option value="mothermaiden">What is your mother's maiden name?</option>
+  			<option value="homestreet">What street did you grow up on?</option>
+  			<option value="homecity">In what city were you born?</option>
+		  </select>
+	  <br>
 		
 	<label for="secretanswer"><b>Secret Answer</b></label>
 	<input type="text" placeholder="Enter Your Secret Answer" name="secretanswer" id="secretanswer" required>
@@ -252,6 +285,20 @@ hr {
 </div>
 				
 <script>
+SelectSecretQ();
+SelectGender();
+function SelectSecretQ()
+{    
+    var element = document.getElementById("secretquestion").selectedIndex;
+    secretQ = document.getElementsByTagName("option")[x].value;
+}
+function SelectGender()
+{    
+    var element = document.getElementById("gender").selesctedIndex;
+    gender = document.getElementsByTagName("option")[x].value;
+}
+
+
 var myInput = document.getElementById("password");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
