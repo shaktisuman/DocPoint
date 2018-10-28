@@ -1,6 +1,9 @@
 package bookDAO;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import domain.login.Login;
 import userDAO.*;
+import bookDAO.*;
 
 @WebServlet("/BookController")
 public class BookController extends HttpServlet {
@@ -19,18 +23,93 @@ public class BookController extends HttpServlet {
     
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.out.println("Hi");
-		
-		String submitTypeDoc = request.getParameter("submitDoc");
-		String[] SelectedDoc = request.getParameterValues("docList");
-		
-		if(submitTypeDoc.equals("dlist"))
-		{
-			System.out.println("Hi2");
-			System.out.println(SelectedDoc[0]);
+		try{
+			System.out.println("Hi");
+			
+			//Get all doctors from DB
+			DoctorDao doctorDao = new DoctorDaoImpl();
+			
+			List<Doctor> docList = doctorDao.getAllDoctors();
+			List<String> docListFormat = new ArrayList();
+			
+			for (Doctor doc : docList) {
+				docListFormat.add(doc.getID() + "_" + doc.getName());
+			}
+			
+			//Print out doctor format
+			for (String docString : docListFormat) {
+				System.out.println(docString);
+			}
+			
+			String submitTypeDoc = request.getParameter("submitDoc");
+			String[] SelectedDoc = request.getParameterValues("docList");
+			
+			if(submitTypeDoc.equals("dlist"))
+			{
+				System.out.println("Hi2");
+				System.out.println(SelectedDoc[0]);
+			}
+			request.getRequestDispatcher("bookAppointment.jsp").forward(request, response);
+			
+			//After select a specific doc, display available dates for booking
+			
+			//first get a list of dates "yyyy-dd-MM", below is dummy data
+			List<String> returnedDates = new ArrayList();
+			returnedDates.add("2018-10-01");
+			returnedDates.add("2018-10-02");
+			returnedDates.add("2018-10-03");
+			returnedDates.add("2018-09-21");
+			
+			//dummy docId
+			int dummydocID = 1;
+			
+			//Get available num slots for each date for specific doctor
+			SlotDao slotDao = new SlotDaoImpl();
+			
+			List<Integer> numSlots = new ArrayList();
+			for(String date: returnedDates) {
+				numSlots.add(slotDao.getNumAvailSlotsForDocOnDate(dummydocID, date));
+			}
+			
+			//Print out numSlots
+			for (Integer Nslot : numSlots) {
+				System.out.println(Nslot);
+			}
+			
+			//Fill out date availability
+			
+			//After select a specific date, display available slots for booking
+			String dummyDate = "2018-10-01";
+			
+			List<Slot> availSlots = slotDao.getAvailSlotsForDocOnDate(dummydocID, dummyDate);
+			
+			List<String> slotListFormat = new ArrayList();
+			
+			for (Slot slot : availSlots) {
+				slotListFormat.add(slot.getSlot_Id() + "_" + slot.getStart_t() + "_" + slot.getEnd_t());
+			}
+			
+			//Print out slot format
+			for (String slotString : slotListFormat) {
+				System.out.println(slotString);
+			}
+			
+			// They select a slot_id
+			int dummySlot = 1;
+			int dummyPatient = 1;
+			
+			// Create an appointment
+			ApptDao apptDao = new ApptDaoImpl();
+			
+			//String Appt_Date, int Slot_Id, int Patient_Id, int Doc_Id
+			Appt app = new Appt(dummyDate, dummySlot, dummyPatient, dummydocID);
+			apptDao.addAppt(app);
+			
 		}
-		request.getRequestDispatcher("bookAppointment.jsp").forward(request, response);
+		catch(Exception e){
+			System.out.println("Something went wrong");
+			System.out.println(e);
+		}
 		
 	}
 }

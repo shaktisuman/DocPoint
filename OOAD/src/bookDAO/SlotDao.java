@@ -18,5 +18,6 @@ public interface SlotDao {
 	public int getTotalNumSlotsForDoc(int Doc_Id);
 	
 	public List<Slot> getAvailSlotsForDocOnDate(int Doc_Id, String Date);
+	public int getNumAvailSlotsForDocOnDate(int Doc_Id, String Date);
 	
 }
