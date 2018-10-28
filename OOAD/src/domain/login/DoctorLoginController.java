@@ -40,6 +40,7 @@ public class DoctorLoginController extends HttpServlet {
 	
 		if(submitType.equals("login") && a!=null && a.getName()!= null  && !a.getName().equals("")){
 			
+			
 			request.setAttribute("message", "Hello "+a.getName());
 			request.setAttribute("name", a.getName());
 			request.setAttribute("info", a.getInfo());
