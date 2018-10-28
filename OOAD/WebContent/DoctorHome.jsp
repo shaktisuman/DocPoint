@@ -4,6 +4,14 @@
 
 <html>
    <head>
+   <style type="text/css">
+
+/* Change the link color to #111 (black) on hover */
+.link-lookalike: hover {
+    background-color: #111;
+}
+ 
+   </style>
        <meta charset="utf-8">
        <title></title>
        <link rel="stylesheet" href="./client.css">
@@ -11,7 +19,8 @@
     <body>
      <nav>
           <ul>
-              <li><a href="#">logout</a></li>
+          
+              <li><a href="doctorlogin.jsp">logout</a></li>
               
               
           </ul>

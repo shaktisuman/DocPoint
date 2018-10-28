@@ -74,12 +74,17 @@ li a:hover {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-form{
-	background-color: white;
-	padding: 20px;
-	width: 500px;
-	height: 500px;
-	margin: 5% 25%;
+nav ul li form{
+	text-align: center;
+	margin: 10px;
+	text-align: center;
+	font-size: 14px;
+	background: none;
+	background-color: #333;
+	color: white;
+	
+	
+	
 }
 input[type='text'], [type='email'], select, textarea {border-bottom: solid 2px #474544;}
 

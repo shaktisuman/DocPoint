@@ -30,6 +30,7 @@ public class DoctorLoginController extends HttpServlet {
 		String username = request.getParameter("username");
 		String pass = request.getParameter("password");
 		String submitType = request.getParameter("submit");
+		
 		Login login = new Login(username, pass);
 		
 		
@@ -41,20 +42,24 @@ public class DoctorLoginController extends HttpServlet {
 			
 			request.setAttribute("message", "Hello "+a.getName());
 			request.setAttribute("name", a.getName());
+			request.setAttribute("info", a.getInfo());
+			request.setAttribute("specialty", a.getSpecialty());
 			Cookie ck=new Cookie("username",username);
 			
 			response.addCookie(ck);
+			
 			request.getRequestDispatcher("DoctorHome.jsp").forward(request, response);
 		}else if(submitType.equals("register")){
 			a.setName(request.getParameter("name"));
 			a.setUsername(request.getParameter("username"));
 			a.setPassword(request.getParameter("password"));
-			a.setSpecialty(request.getParameter("specialty"));
-			a.setInfo(request.getParameter("info"));
+			a.setSpecialty(request.getParameter("Specialty"));
+			a.setInfo(request.getParameter("Info"));
 			doctorDao.addDoctor(a);
 			request.setAttribute("successMessage", "Registration done, please login!");
 			request.getRequestDispatcher("doctorlogin.jsp").forward(request, response);
-		}else{
+		}
+		else{
 			request.setAttribute("message", "Incorrect Username and/or Password!");
 			request.getRequestDispatcher("doctorlogin.jsp").include(request, response);
 		}

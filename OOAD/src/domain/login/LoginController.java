@@ -40,14 +40,20 @@ public class LoginController extends HttpServlet {
 		if(submitType.equals("login") && a!=null && a.getName()!= null  && !a.getName().equals("")){
 			
 			request.setAttribute("message", "Hello "+a.getName());
+			
 			request.setAttribute("name", a.getName());
+			request.setAttribute("address", a.getAddress());
+			request.setAttribute("birthdate", a.getBirthdate());
+			request.setAttribute("city", a.getCity());
+			request.setAttribute("Gender", a.getGender());
+			request.setAttribute("medicalhistory",a.getMedicalHistory());
 			/*request.setAttribute("birthdate", "01/01/2000");
 			request.setAttribute("address", "123 Main St.");
 			request.setAttribute("city", "Richardson");
 			request.setAttribute("Gender", "F"); */
 			//Added Cookie
 			Cookie ck=new Cookie("username",username);
-			
+			request.setAttribute("LoggedIn", "T");
 			response.addCookie(ck);
 			request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
 		}else if(submitType.equals("register")){
@@ -64,6 +70,10 @@ public class LoginController extends HttpServlet {
 			a.setSecret_A(request.getParameter("secretanswer"));
 			patientDao.addPatient(a);
 			request.setAttribute("successMessage", "Registration done, please login!");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
+		else if(submitType.equals("logout")){
+			request.setAttribute("LoggedIn", "F");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}else{
 			request.setAttribute("message", "Incorrect Username and/or Password!");
