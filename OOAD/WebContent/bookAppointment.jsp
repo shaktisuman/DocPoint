@@ -37,6 +37,8 @@ $(document).ready(function(){
     $( "#docList" ).change(function() {
     	var doc = $('#docList').find(":selected").text();
     	alert( "Booking for: " + doc );
+    	$("#bookForm").click();
+    	
     	});
     
 });
@@ -101,12 +103,17 @@ body {
 
 <label id='lblDocPick'>Pick a Doctor:</label>
 
-<select id='docList'>
+<form name="dlist" action="BookController" method="post">
+<select id='docList' name ='docList'>
 <option value="pick" selected>Pick a Doctor</option>
 <option value="Doc1">Doc 1</option>
 <option value="Doc2">Doc 2</option>
 <option value="Doc3">Doc 3</option>
 </select>
+<input id="bookForm" type="submit" name="submitDoc" value="dlist" style="display:none;">
+
+</form>
+
 
 <header id='calHdr'><b>Pick a Date: </b><b id='m'></b></header>
 

@@ -247,4 +247,40 @@ public class SlotDaoImpl implements SlotDao {
 		
 		return slot_list;
 	}
+	@Override
+	public int getNumAvailSlotsForDocOnDate(int Doc_Id, String Date) {
+		// TODO Auto-generated method stub
+		/**
+		 * This method get all slots for doc_id on date
+		 * @param Int Doc_Id, String Date
+		 * @return Slot
+		 * @exception com.mysql.jdbc.exceptions
+		 */
+		int numAvailSlots = -1;
+		try
+		{
+			conn 	= db.getConnection();
+			ps		= conn.prepareStatement("SELECT COUNT(Slot_Id) FROM SLOT WHERE Doc_id = ? \r\n" + 
+					"AND SLOT.Slot_Id \r\n" + 
+					"	NOT IN \r\n" + 
+					"(SELECT Slot_Id FROM APPT WHERE Appt_Date = ? AND Doc_id = ?); ");
+			ps.setString(1, Integer.toString(Doc_Id));
+			ps.setString(2, Date);
+			ps.setString(3, Integer.toString(Doc_Id));
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				numAvailSlots = rs.getInt("COUNT(Slot_Id)");
+			}
+			
+			conn.close();
+			
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		return numAvailSlots;
+	}
 }
