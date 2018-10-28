@@ -197,7 +197,7 @@ hr {
 
 <div class="container">
 <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
-	  <h1>Register</h1>
+	  <h1>Patient Registration</h1>
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
       
@@ -295,7 +295,7 @@ function SelectSecretQ()
 }
 function SelectGender()
 {    
-    var element = document.getElementById("gender").selesctedIndex;
+    var element = document.getElementById("gender").selectedIndex;
     gender = document.getElementsByTagName("option")[x].value;
 }
 
@@ -359,68 +359,6 @@ myInput.onkeyup = function() {
 }
 </script>
 
-<%-- <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
-	<nav>
-  		<a href="login.jsp">Login Page</a> |
-  		<a href="/js/">Contact Us</a>
-	</nav>
-	<br>	
-	<font size="5", face="verdana"> Looks like you haven't used Dr. Book before! </font><br>
-	<font size="5", face="verdana"> Please register below </font>
-	<br>${message}<br>
-	<br>--%>	
-	<%-- Username: <input type="text" name="username"> <br>
-	<div id="username_error"></div><br>
-	Customer name: <input type="text" name="name"><br>
-	
-	Password: <input type="password" name="password" id="password"> 
-	<br>
-	Re-Type Password: <input type="password" name="retry-password" id="retry-password"> 
-	<br>
-	<div id="password_error"></div><br>
-	<input type="submit" name="submit" value="register" >
-	<input type="reset" name="reset">--%>
-	
-	<%-- <table>
-		<tr>
-			<td>UserName</td>
-			<td><input type="text" name="username"/><div id="username_error"></div></td>
-		</tr>
-		<tr>
-			<td>Customer name</td>
-			<td><input type="text" name="name"/></td>
-		</tr>
-		<tr>
-			<td>Password</td>
-			<td><input type="password" name="password" id="password"/></td>
-		</tr>
-		<tr>
-			<td>Re-Type Password</td>
-			<td><input type="password" name="retry-password" id="retry-password"/><div id="password_error"></div></td>
-		</tr>
-		<tr>
-			<td>Secret Question</td>
-			<td><select>
-			  		<option value="select">------------- Make a Selection -------------</option>
-  					<option value="father">What is your father's middle name?</option>
-  					<option value="mother">What is your mother's maiden name?</option>
-  					<option value="street">What street did you grow up on?</option>
-  					<option value="city">In what city were you born?</option>
-				</select></td>
-		</tr>
-		<tr>
-			<td>Secret Answer</td>
-			<td><input type="text" name="secretanswer" id="secretanswer"/></td>
-		</tr>
-		<tr>
-			<td><button type="submit" name="submit" value="register">Register</button>
-			<button type="reset" name="reset">Reset</button></td>
-		</tr>
-	</table>
-	<br>	
-	<a href="TermsandConditions.jsp">Terms & Conditions</a>
-	
-	</form> --%>
 	
 </body>
 </html>
