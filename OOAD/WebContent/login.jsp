@@ -52,6 +52,11 @@ input[type=submit] {
     padding: 20px;
 }
 
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
 </style>
 </head>
 
@@ -79,6 +84,12 @@ ${successMessage}
     <input type="submit" name="submit" value="login">
     <a href="register.jsp">Register</a>
   </form>
+</div>
+
+<b><font color="white">New Line</font></b>
+
+<div class="container signin">
+	<p>Not a patient? <a href="doctorlogin.jsp">Doctor Sign in</a>  <a href="adminlogin.jsp">Admin Sign in</a>.</p>
 </div>
 				
 </body>
