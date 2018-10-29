@@ -123,22 +123,20 @@ body {
 
 <label id='lblDocPick'>Pick a Doctor:</label>
 
+<form name="dlist" action="BookController" method="post">
+<select id='docList' name ='docList'>
+<option value="pick" selected>Pick a Doctor</option>
 <% 
 try {
 	List<String> doctors = (List<String>)request.getAttribute("names"); 
-	for(int i = 0; i< doctors.size();i++) {
-		System.out.println(doctors.get(i));
+	for(int i = 0; i< doctors.size();i++) { %>
+		<option value=<%=(doctors.get(i))%>><%=(doctors.get(i)).split("_")[1]%> </option> <%
 }
 }
 	catch(Exception e) {
 		System.out.print(e);
 	}
 %>
-
-<form name="dlist" action="BookController" method="post">
-<select id='docList' name ='docList'>
-<option value="pick" selected>Pick a Doctor</option>
-<option value="Doc1">Doc 1</option>
 </select>
 <input id="sendDoc" type="submit" name="submit" value="dlist" style="display:none;">
 </form>
