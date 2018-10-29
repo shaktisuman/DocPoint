@@ -41,7 +41,6 @@ public class LoginController extends HttpServlet {
 			
 			request.setAttribute("message", "Hello "+a.getName());
 			
-			
 			request.setAttribute("name", a.getName());
 			request.setAttribute("address", a.getAddress());
 			request.setAttribute("birthdate", a.getBirthdate());
