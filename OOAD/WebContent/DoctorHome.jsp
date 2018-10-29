@@ -13,7 +13,7 @@
  
    </style>
        <meta charset="utf-8">
-       <title></title>
+       <title>DoctorHome</title>
        <link rel="stylesheet" href="./client.css">
    </head>
     <body>
@@ -29,7 +29,7 @@
      <h1>DOCTOR INFORMATION</h1>
      </header>
      
-      <h2> </h2> 
+      <h2>${message} </h2> 
      
       <div class="row1">
             
