@@ -7,12 +7,28 @@
 <link rel="stylesheet" type="text/css" href="drbook.css">
 <title>Book an Appointment</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery.session.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <script>
 $(document).ready(function(){
 	//pre-fetch list of doctors
+	
 	<%
+	try{
+		List<String> busyDays = (List<String>)request.getAttribute("busyDays"); 
+		if(busyDays.get(0).split("-")[2] != "") {
+			
+			for(int i = 0; i< busyDays.size();i++) { %>
+				$("#<%=(busyDays.get(i)).split("-")[2]%>").css("background-color","red");
+				<%
+		}
+			
+		}
+	}
+	catch(Exception e) {
+		
+	}
 	try {
 		if((String)request.getAttribute("firstLoad") == "done") {
 			System.out.println("Loaded already.");
@@ -38,8 +54,9 @@ $(document).ready(function(){
     	];
     $('#m').html(monthNames[d.getMonth()]);
     $(document).on("click",".row1", function (event) {
-    	var doc = $('#docList').find(":selected").text();
-    	if(doc=="Pick a Doctor")
+    	//var doc = $('#docList').find(":selected").text();
+    	var doc = $.session.get("doc");
+    	if(doc=="Pick a Doctor" || doc=="undefined" )
     	{
     		alert("Pick a Doctor to Book an Appointment!");
     	}
@@ -47,14 +64,32 @@ $(document).ready(function(){
     		var day = event.target.id;
             var str = monthNames[d.getMonth()] + " - " + day;
             $('#d').html(str);
-            modal.style.display = "block";
+            alert( "Booking for: " + $.session.get("doc").split("_")[1]);
+            $("#selDate").attr("value",day);
+            $("#getSlot").click();
+            bool.style.display = "block";
     	}
     });
     $( "#docList" ).change(function() {
-    	var doc = $('#docList').find(":selected").text();
-    	alert( "Booking for: " + doc );
+    	var doc = $('#docList').find(":selected").val();
+    	$.session.set("doc", doc);
     	$("#sendDoc").click();
+    	alert("Selected Doctor not available on Dates Marked in Red!");
     	});
+    $("#bk").click(function(){
+    	var sel = $('#slotList').find(":selected").text();
+    	if (sel=="Choose")
+    		{
+    		alert("Choose a slot!");
+    		}
+    	else {
+    		alert("Booked for:" + sel);
+    	    book.style.display = "none";
+    	}
+    });
+    $("#cls").click(function(){
+    	    book.style.display = "none";
+    });
     
 });
 </script>
@@ -120,6 +155,11 @@ body {
 <input id="getDoc" type="submit" name="submit" value="fetchDList" style="display:none;">
 </form>
 
+<form name="slotList" action="BookController" method="post">
+<input id="selDate" name="selDate" type="text" style="display:none;">
+<input id="getSlot" type="submit" name="submit" value="slotList" style="display:none;">
+</form>
+
 
 <label id='lblDocPick'>Pick a Doctor:</label>
 
@@ -145,15 +185,15 @@ try {
 <header id='calHdr'><b>Pick a Date: </b><b id='m'></b></header>
 
 <section id='cal' class='groove'>
-<section id='1' class = 'row1'>1</section>
-<section id='2' class = 'row1'>2</section>
-<section id='3' class = 'row1'>3</section>
-<section id='4' class = 'row1'>4</section>
-<section id='5' class = 'row1'>5</section>
-<section id='6' class = 'row1'>6</section>
-<section id='7' class = 'row1'>7</section>
-<section id='8' class = 'row1'>8</section>
-<section id='9' class = 'row1'>9</section>
+<section id='01' class = 'row1'>1</section>
+<section id='02' class = 'row1'>2</section>
+<section id='03' class = 'row1'>3</section>
+<section id='04' class = 'row1'>4</section>
+<section id='05' class = 'row1'>5</section>
+<section id='06' class = 'row1'>6</section>
+<section id='07' class = 'row1'>7</section>
+<section id='08' class = 'row1'>8</section>
+<section id='09' class = 'row1'>9</section>
 <section id='10' class = 'row1'>10</section>
 <section id='12' class = 'row1'>11</section>
 <section id='12' class = 'row1'>12</section>
@@ -178,10 +218,24 @@ try {
 <section id='31' class = 'row1'>31</section>
 </section>
 
+<div id="book">
+    <b>Pick a Slot for Day:</b><!-- <b id='d'><%=request.getAttribute("dt") %></b> -->
+    <p>Available:
+    <select id='slotList'>
+    	<option value="choose" selected>Choose</option>
+		<option value="Slot1">Slot 1</option>
+		<option value="Slot2">Slot 2</option>
+		<option value="Slot3">Slot 3</option>
+	</select>
+    </p>
+    <button id="bk"> Book!</button>
+    <button id="cls"> Close</button>
+  </div>
+
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
-  <!-- Modal content -->
+  <!-- Modal content
   <div class="modal-content">
     <span class="close">&times;</span>
     <b>Pick a Slot for Day:</b><b id='d'></b>
@@ -197,9 +251,9 @@ try {
     <button id="cls"> Close</button>
   </div>
 
-</div>
+</div> -->
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 //Get the modal
 var modal = document.getElementById('myModal');
 
@@ -233,6 +287,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-</script>
+</script> -->
 </body>
 </html>
