@@ -24,32 +24,42 @@ public class BookController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
-			System.out.println("Hi");
+			System.out.println("in DoPost");
 			
 			//Get all doctors from DB
 			DoctorDao doctorDao = new DoctorDaoImpl();
 			
 			List<Doctor> docList = doctorDao.getAllDoctors();
-			List<String> docListFormat = new ArrayList();
+			List<String> docListFormat = new ArrayList<String>();
+			List<String> docNames = new ArrayList<String>();
 			
 			for (Doctor doc : docList) {
 				docListFormat.add(doc.getID() + "_" + doc.getName());
+				docNames.add(doc.getName());
 			}
 			
 			//Print out doctor format
 			for (String docString : docListFormat) {
-				System.out.println(docString);
+				//System.out.println(docString);
 			}
 			
-			String submitTypeDoc = request.getParameter("submitDoc");
-			String[] SelectedDoc = request.getParameterValues("docList");
-			
-			if(submitTypeDoc.equals("dlist"))
+			//Sending list of doctors to populate dropdown in UI
+			String submitType = request.getParameter("submit");
+			if(submitType.equals("fetchDList"))
 			{
-				System.out.println("Hi2");
-				System.out.println(SelectedDoc[0]);
+				System.out.println("Sending list of doctors to populate dropdown in UI");
+				request.setAttribute("names", docNames);
+				request.setAttribute("firstLoad", "done");
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
-			request.getRequestDispatcher("bookAppointment.jsp").forward(request, response);
+
+			if(submitType.equals("dlist"))
+			{
+				String[] SelectedDoc = request.getParameterValues("docList");
+				System.out.println("Printing selected doctor below");
+				System.out.println(SelectedDoc[0]);
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
+			}
 			
 			//After select a specific doc, display available dates for booking
 			
@@ -73,7 +83,7 @@ public class BookController extends HttpServlet {
 			
 			//Print out numSlots
 			for (Integer Nslot : numSlots) {
-				System.out.println(Nslot);
+				//System.out.println(Nslot);
 			}
 			
 			//Fill out date availability
@@ -91,7 +101,7 @@ public class BookController extends HttpServlet {
 			
 			//Print out slot format
 			for (String slotString : slotListFormat) {
-				System.out.println(slotString);
+				//System.out.println(slotString);
 			}
 			
 			// They select a slot_id
@@ -107,7 +117,7 @@ public class BookController extends HttpServlet {
 			
 		}
 		catch(Exception e){
-			System.out.println("Something went wrong");
+			System.out.println("DB Error!");
 			System.out.println(e);
 		}
 		
