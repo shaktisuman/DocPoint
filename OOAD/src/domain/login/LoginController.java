@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
 			a.setState(request.getParameter("state"));
 			a.setGender(request.getParameter("gender"));
 			a.setMedicalHistory(request.getParameter("sickness"));
-			a.setSecret_Q(request.getParameter("secretQ"));
+			a.setSecret_Q(request.getParameter("secretquestion"));
 			a.setSecret_A(request.getParameter("secretanswer"));
 			patientDao.addPatient(a);
 			request.setAttribute("successMessage", "Registration done, please login!");
