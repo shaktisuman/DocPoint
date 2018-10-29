@@ -13,7 +13,7 @@ public class Doctor {
 	// Constructor
 	
 	// Empty Constructor
-	Doctor(){
+	public Doctor(){
 		this.Doc_ID = -1;
 		this.name = "";
 		this.username = "";
@@ -23,7 +23,7 @@ public class Doctor {
 	}
 
 	// Full Constructor
-	Doctor(int Doc_ID,String name, String username, String password, String Specialty, String Info){
+	public Doctor(int Doc_ID,String name, String username, String password, String Specialty, String Info){
 		setID(Doc_ID);
 		setName(name);
 		setUsername(username);
@@ -34,7 +34,7 @@ public class Doctor {
 	}
 	
 	// Constructor without ID
-	Doctor(String name, String username, String password, String Specialty, String Info){
+	public Doctor(String name, String username, String password, String Specialty, String Info){
 		setName(name);
 		setUsername(username);
 		setPassword(password);
