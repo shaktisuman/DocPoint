@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,21 @@
 
 <script>
 $(document).ready(function(){
+	//pre-fetch list of doctors
+	<%
+	try {
+		if((String)request.getAttribute("firstLoad") == "done") {
+			System.out.println("Loaded already.");
+		}
+		else {%>
+			$("#getDoc").click();
+		<%}
+	}
+	catch(Exception e) {
+		
+	}
+	%>
+	
 	$('#lblHi').html("Hi " + $.cookie("username"));
 	var d = new Date();
     n = d.getMonth();
@@ -37,8 +53,7 @@ $(document).ready(function(){
     $( "#docList" ).change(function() {
     	var doc = $('#docList').find(":selected").text();
     	alert( "Booking for: " + doc );
-    	$("#bookForm").click();
-    	
+    	$("#sendDoc").click();
     	});
     
 });
@@ -101,17 +116,31 @@ body {
 
 <center><b><h2>Book an Appointment!</h2></b></center>
 
+<form name="fetchDList" action="BookController" method="post">
+<input id="getDoc" type="submit" name="submit" value="fetchDList" style="display:none;">
+</form>
+
+
 <label id='lblDocPick'>Pick a Doctor:</label>
+
+<% 
+try {
+	List<String> doctors = (List<String>)request.getAttribute("names"); 
+	for(int i = 0; i< doctors.size();i++) {
+		System.out.println(doctors.get(i));
+}
+}
+	catch(Exception e) {
+		System.out.print(e);
+	}
+%>
 
 <form name="dlist" action="BookController" method="post">
 <select id='docList' name ='docList'>
 <option value="pick" selected>Pick a Doctor</option>
 <option value="Doc1">Doc 1</option>
-<option value="Doc2">Doc 2</option>
-<option value="Doc3">Doc 3</option>
 </select>
-<input id="bookForm" type="submit" name="submitDoc" value="dlist" style="display:none;">
-
+<input id="sendDoc" type="submit" name="submit" value="dlist" style="display:none;">
 </form>
 
 
