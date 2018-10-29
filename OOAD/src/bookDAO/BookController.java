@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jetty.websocket.api.Session;
+
 import domain.login.Login;
 import userDAO.*;
 import bookDAO.*;
@@ -41,28 +43,7 @@ public class BookController extends HttpServlet {
 				//System.out.println(docString);
 			}
 			
-			String submitType = request.getParameter("submit");
-			
-			//Sending list of doctors to populate dropdown in UI
-			if(submitType.equals("fetchDList"))
-			{
-				System.out.println("Sending list of doctors to populate dropdown in UI");
-				request.setAttribute("names", docListFormat);
-				request.setAttribute("firstLoad", "done");
-				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
-			}
-
-			//Receiving selected Doctor from dropdown and send back the dates for which the doctor is busy
-			if(submitType.equals("dlist"))
-			{
-				String[] SelectedDoc = request.getParameterValues("docList");
-				System.out.println("Printing selected doctor below");
-				System.out.println(SelectedDoc[0].split("_")[1]);
-				System.out.println(SelectedDoc[0].split("_")[0]);
-				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
-			}
-			
-			//After select a specific doc, display available dates for booking
+//After select a specific doc, display available dates for booking
 			
 			//first get a list of dates "yyyy-dd-MM", below is dummy data
 			List<String> returnedDates = new ArrayList();
@@ -73,6 +54,35 @@ public class BookController extends HttpServlet {
 			
 			//dummy docId
 			int dummydocID = 1;
+			String dt = "";
+			
+			String submitType = request.getParameter("submit");
+			
+			//Sending list of doctors to populate dropdown in UI
+			int counter = 0;
+			if(submitType.equals("fetchDList"))
+			{
+				int count = 1;
+				System.out.println("Sending list of doctors to populate dropdown in UI");
+				request.setAttribute("names", docListFormat);
+				request.setAttribute("firstLoad", "done");
+				//request.setAttribute("busyDays", returnedDates);
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
+			}
+
+			
+			//Receiving selected Doctor from dropdown and send back the dates for which the doctor is busy
+			if(submitType.equals("dlist"))
+			{
+				String[] SelectedDoc = request.getParameterValues("docList");
+				System.out.println("Printing selected doctor below");
+				System.out.print("Selected Doctor ID:");
+				System.out.println(SelectedDoc[0].split("_")[0]);
+				request.setAttribute("busyDays", returnedDates);
+				System.out.println("Returning back busy days");
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
+			}
+			
 			
 			//Get available num slots for each date for specific doctor
 			SlotDao slotDao = new SlotDaoImpl();
@@ -102,7 +112,17 @@ public class BookController extends HttpServlet {
 			
 			//Print out slot format
 			for (String slotString : slotListFormat) {
-				//System.out.println(slotString);
+				System.out.print("Printing Slots:");
+				System.out.println(slotString);
+			}
+			
+			if(submitType.equals("slotList"))
+			{
+				String selDate = request.getParameter("selDate");
+				System.out.println("Sel Date: "+ selDate);
+				request.setAttribute("dt", selDate);
+				request.setAttribute("slots", slotListFormat);
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
 			
 			// They select a slot_id
