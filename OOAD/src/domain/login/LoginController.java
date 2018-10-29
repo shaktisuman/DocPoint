@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
 			a.setUsername(request.getParameter("username"));
 			a.setPassword(request.getParameter("password"));
 			a.setBirthdate(request.getParameter("birthdate"));
-			a.setAddress(request.getParameter("address"));
+			a.setAddress(request.getParameter("street"));
 			a.setCity(request.getParameter("city"));
 			a.setState(request.getParameter("state"));
 			a.setGender(request.getParameter("gender"));
