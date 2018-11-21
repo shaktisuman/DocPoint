@@ -50,7 +50,7 @@ public class DoctorLoginController extends HttpServlet {
 			response.addCookie(ck);
 			
 			request.getRequestDispatcher("DoctorHome.jsp").forward(request, response);
-		}else if(submitType.equals("register")){
+		}/*else if(submitType.equals("register")){
 			a.setName(request.getParameter("name"));
 			a.setUsername(request.getParameter("username"));
 			a.setPassword(request.getParameter("password"));
@@ -59,7 +59,7 @@ public class DoctorLoginController extends HttpServlet {
 			doctorDao.addDoctor(a);
 			request.setAttribute("successMessage", "Registration done, please login!");
 			request.getRequestDispatcher("doctorlogin.jsp").forward(request, response);
-		}
+		}*/
 		else{
 			request.setAttribute("message", "Incorrect Username and/or Password!");
 			request.getRequestDispatcher("doctorlogin.jsp").include(request, response);
