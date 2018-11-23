@@ -82,7 +82,8 @@ ${successMessage}
     <input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
     
     <input type="submit" name="submit" value="login">
-    <a href="register.jsp">Register</a>
+    <a href="register.jsp">Register</a><br><br>
+    <a href="forgotpassword.jsp">Forgot Password?</a>
   </form>
 </div>
 
