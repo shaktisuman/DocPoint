@@ -96,7 +96,7 @@ ${message}
       <hr>
       
       <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required><div id="username_error"></div>
+      <input type="text" placeholder="Enter Username" name="username" id="username" required><div id="username_error"></div>
 
     <div class="clearfix">
         <button type="submit" name="submit" value="submit" class="signupbtn">submit</button>
