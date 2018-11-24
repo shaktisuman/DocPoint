@@ -5,7 +5,7 @@
 <head>
 <script type="text/javascript" src="script.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Forgot Password</title>
+<title>Reset Password</title>
 <style>
 /*Style image*/
 img {
@@ -90,6 +90,7 @@ button:hover {
 </a>
 
 ${message}
+${successMessage}
 <div class="container">
 <form name="forgotpassform" action="ResetPasswordController" method="post">
 	  <h1>Password Reset</h1>
@@ -99,7 +100,7 @@ ${message}
       <%--<p id="demo"></p> --%>
       <%--<display:column>
 	    <c:choose>
-	        <c:when test="${secretquestion.equals('fathermiddle')}">What is your father's middle name?</c:when>
+	        <c:when test="${secretquestion.equals('fmiddle')}">What is your father's middle name?</c:when>
 	        <c:when test="${secretquestion.equals('mothermaiden')}">What is your mother's maiden name?</c:when>
 	        <c:when test="${secretquestion.equals('homestreet')}">What street did you grow up on?</c:when>
 	       	<c:when test="${secretquestion.equals('homecity')}">In what city were you born?</c:when>
