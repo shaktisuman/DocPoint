@@ -34,24 +34,23 @@ public class ResetPasswordController extends HttpServlet {
 			
 			String submitType = request.getParameter("submit");
 			
-			if(submitType.equals("submit") && p!=null && p.getName()!=null){
+			if(submitType.equals("submit") && p!=null && p.getName()!=null && request.getParameter("secretanswer") != null &&  !request.getParameter("secretanswer").equals("") && request.getParameter("secretanswer").equals(p.getSecret_A())){
 				
 				
-				if(request.getParameter("secretanswer") != null &&  !request.getParameter("secretanswer").equals("") && request.getParameter("secretanswer").equals(p.getSecret_A())){
-					
-					p.setPassword(request.getParameter("password") );
-				}
+				p.setPassword(request.getParameter("password") );
 				request.setAttribute("secretanswer", p.getPassword());
 				patientDao.updatePatient(p);
 				System.out.println(p);
 				
+				request.setAttribute("successMessage", "Password successfully changed, please login!");
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-				 
+				
 			}
 			else{
 				request.setAttribute("message", "Incorrect Answer!");
 				request.getRequestDispatcher("resetpassword.jsp").include(request, response);
 			}
+			
 			
 		}
 		catch(Exception e){
