@@ -48,25 +48,8 @@ public class BookController extends HttpServlet {
 				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
 			
-			//Receive Selected DocId and Date
-			//Dummy DocId an Date
-			int Doc_Id = 1;
-			String date = "2018-11-27";
-			
-			//create doc object
-			Doctor doc = doctorDao.getDoctor(Doc_Id);
-			
-			//create slot list
-			SlotDao slotDao = new SlotDaoImpl();
-			List<Slot> list_slot = slotDao.getSlotsForDoc(Doc_Id);
-			
-			//create appt list
-			ApptDao apptDao = new ApptDaoImpl();
-			List<Appt> list_appt = apptDao.getApptForDoc(Doc_Id);
-			
-			DocSched docSched = new DocSched(doc, list_slot, list_appt);
-			
-			List<String> list_format_slot = docSched.getAvailSlots();
+			String date = "";
+			int Doc_Id = -1;
 			
 			//send this list of avail slots to populate
 			if(submitType.equals("slotList"))
@@ -74,17 +57,56 @@ public class BookController extends HttpServlet {
 				String selDate = request.getParameter("selDate");
 				System.out.println("Sel Date: "+ selDate);
 				request.setAttribute("dt", selDate);
+				
+				//Receive Selected DocId and Date
+				
+				String[] SelectedDoc = request.getParameterValues("docList");
+				System.out.println("Printing selected doctor below");
+				System.out.print("Selected Doctor ID:");
+				System.out.println(SelectedDoc[0].split("_")[0]);
+				Doc_Id = Integer.valueOf((SelectedDoc[0].split("_")[0]));
+				date = request.getParameter("selDate");
+				
+				//create doc object
+				Doctor doc = doctorDao.getDoctor(Doc_Id);
+				
+				//create slot list
+				SlotDao slotDao = new SlotDaoImpl();
+				List<Slot> list_slot = slotDao.getSlotsForDoc(Doc_Id);
+				
+				//create appt list
+				ApptDao apptDao = new ApptDaoImpl();
+				List<Appt> list_appt = apptDao.getApptForDoc(Doc_Id);
+				
+				DocSched docSched = new DocSched(doc, list_slot, list_appt);
+				
+				List<String> list_format_slot = docSched.getAvailSlots();
+				
 				request.setAttribute("slots", list_format_slot);
+				
+				boolean showBookDiv = true;
+				request.setAttribute("showBookDiv", showBookDiv);
 				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
 			
-			//recieve slotid, get patid
-			int Slot_Id = 1;
-			int Pat_Id = 1;
 			
-			//create new appt object and save to db
-			Appt new_Appt = new Appt(date, Slot_Id, Doc_Id, Pat_Id);
-			apptDao.addAppt(new_Appt);
+			if(submitType.equals("finishAppt"))
+			{
+				//recieve SlotId, PatId
+				String Slot_IdStr = request.getParameter("selSlotId");
+				int Slot_Id = Integer.valueOf(Slot_IdStr);
+				
+				String Pat_IdStr = request.getParameter("selPatId");
+				int Pat_Id = Integer.valueOf(Pat_IdStr);
+				
+				ApptDao apptDao = new ApptDaoImpl();
+				
+				//create new appt object and save to db
+				Appt new_Appt = new Appt(date, Slot_Id, Doc_Id, Pat_Id);
+				apptDao.addAppt(new_Appt);
+			}
+			
+			
 			
 			
 		}
