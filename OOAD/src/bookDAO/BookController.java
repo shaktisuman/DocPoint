@@ -38,103 +38,48 @@ public class BookController extends HttpServlet {
 				docListFormat.add(doc.getID() + "_" + doc.getName());
 			}
 			
-			//Print out doctor format
-			for (String docString : docListFormat) {
-				//System.out.println(docString);
-			}
-			
-//After select a specific doc, display available dates for booking
-			
-			//first get a list of dates "yyyy-dd-MM", below is dummy data
-			List<String> returnedDates = new ArrayList();
-			returnedDates.add("2018-10-01");
-			returnedDates.add("2018-10-02");
-			returnedDates.add("2018-10-03");
-			returnedDates.add("2018-09-21");
-			
-			//dummy docId
-			int dummydocID = 1;
-			String dt = "";
-			
 			String submitType = request.getParameter("submit");
 			
 			//Sending list of doctors to populate dropdown in UI
-			int counter = 0;
 			if(submitType.equals("fetchDList"))
 			{
-				int count = 1;
 				System.out.println("Sending list of doctors to populate dropdown in UI");
 				request.setAttribute("names", docListFormat);
 				request.setAttribute("firstLoad", "done");
 				//request.setAttribute("busyDays", returnedDates);
 				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
-
 			
-			//Receiving selected Doctor from dropdown and send back the dates for which the doctor is busy
-			if(submitType.equals("dlist"))
-			{
-				String[] SelectedDoc = request.getParameterValues("docList");
-				System.out.println("Printing selected doctor below");
-				System.out.print("Selected Doctor ID:");
-				System.out.println(SelectedDoc[0].split("_")[0]);
-				request.setAttribute("busyDays", returnedDates);
-				System.out.println("Returning back busy days");
-				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
-			}
+			//Receive Selected DocId and Date
+			//Dummy DocId an Date
+			int Doc_Id = 1;
+			String date = "2018-11-27";
 			
+			//create doc object
+			Doctor doc = doctorDao.getDoctor(Doc_Id);
 			
-			//Get available num slots for each date for specific doctor
+			//create slot list
 			SlotDao slotDao = new SlotDaoImpl();
+			List<Slot> list_slot = slotDao.getSlotsForDoc(Doc_Id);
 			
-			List<Integer> numSlots = new ArrayList();
-			for(String date: returnedDates) {
-				numSlots.add(slotDao.getNumAvailSlotsForDocOnDate(dummydocID, date));
-			}
-			
-			//Print out numSlots
-			for (Integer Nslot : numSlots) {
-				//System.out.println(Nslot);
-			}
-			
-			//Fill out date availability
-			
-			//After select a specific date, display available slots for booking
-			String dummyDate = "2018-10-01";
-			
-			List<Slot> availSlots = slotDao.getAvailSlotsForDocOnDate(dummydocID, dummyDate);
-			
-			List<String> slotListFormat = new ArrayList();
-			
-			for (Slot slot : availSlots) {
-				slotListFormat.add(slot.getSlot_Id() + "_" + slot.getStart_t() + "_" + slot.getEnd_t());
-			}
-			
-			//Print out slot format
-			for (String slotString : slotListFormat) {
-				System.out.print("Printing Slots:");
-				System.out.println(slotString);
-			}
-			
-			if(submitType.equals("slotList"))
-			{
-				String selDate = request.getParameter("selDate");
-				System.out.println("Sel Date: "+ selDate);
-				request.setAttribute("dt", selDate);
-				request.setAttribute("slots", slotListFormat);
-				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
-			}
-			
-			// They select a slot_id
-			int dummySlot = 1;
-			int dummyPatient = 1;
-			
-			// Create an appointment
+			//create appt list
 			ApptDao apptDao = new ApptDaoImpl();
+			List<Appt> list_appt = apptDao.getApptForDoc(Doc_Id);
 			
-			//String Appt_Date, int Slot_Id, int Patient_Id, int Doc_Id
-			Appt app = new Appt(dummyDate, dummySlot, dummyPatient, dummydocID);
-			apptDao.addAppt(app);
+			DocSched docSched = new DocSched(doc, list_slot, list_appt);
+			
+			List<String> list_format_slot = docSched.getAvailSlots();
+			
+			//send this list of avail slots to populate
+			
+			//recieve slotid, get patid
+			int Slot_Id = 1;
+			int Pat_Id = 1;
+			
+			//create new appt object and save to db
+			Appt new_Appt = new Appt(date, Slot_Id, Doc_Id, Pat_Id);
+			apptDao.addAppt(new_Appt);
+			
 			
 		}
 		catch(Exception e){
@@ -144,3 +89,5 @@ public class BookController extends HttpServlet {
 		
 	}
 }
+
+			

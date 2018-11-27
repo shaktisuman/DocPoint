@@ -69,6 +69,39 @@ public class DoctorDaoImpl implements DoctorDao{
 
 
 	@Override
+	public Doctor getDoctor(int ID) {
+		/**
+		 * This method query Doctor by username (email)
+		 * @param String username
+		 * @return Patient
+		 * @exception com.mysql.jdbc.exceptions
+		 */
+		
+		// TODO Auto-generated method stub
+		Doctor d = new Doctor();
+		try
+		{
+			conn 	= db.getConnection();
+			ps		= conn.prepareStatement("select * from DOC where Doc_Id=?");
+			ps.setString(1, Integer.toString(ID));
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				d = decodeRS(rs);
+			}
+			
+			conn.close();
+			
+		}catch(Exception e)
+		{
+			System.out.println(e);
+			return null;
+		}
+		return d;
+	}
+	
+	@Override
 	public Doctor getDoctor(String username) {
 		/**
 		 * This method query Doctor by username (email)
