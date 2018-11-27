@@ -15,20 +15,19 @@ $(document).ready(function(){
 	//pre-fetch list of doctors
 	
 	<%
-	try{
-		List<String> busyDays = (List<String>)request.getAttribute("busyDays"); 
-		if(busyDays.get(0).split("-")[2] != "") {
-			
-			for(int i = 0; i< busyDays.size();i++) { %>
-				$("#<%=(busyDays.get(i)).split("-")[2]%>").css("background-color","red");
-				<%
-		}
-			
-		}
-	}
-	catch(Exception e) {
+	try {
+		//code to hide book div unless showBookDiv is sent
+		if((Boolean)request.getAttribute("showBookDiv")) {%>
+		$("#book").show();
+	<%}
+		else {%>
+			$("#book").hide();
+		<%}
 		
 	}
+	catch(Exception e) {%>
+	$("#book").hide();
+<%}
 	try {
 		if((String)request.getAttribute("firstLoad") == "done") {
 			System.out.println("Loaded already.");
@@ -45,6 +44,7 @@ $(document).ready(function(){
 	$('#lblHi').html("Hi " + $.cookie("username"));
 	var d = new Date();
     n = d.getMonth();
+    y = d.getFullYear();
     if(n==1 || n==3 || n==5 || n==8 || n==10) 
     {
     	$("#31").hide();
@@ -73,8 +73,8 @@ $(document).ready(function(){
     $( "#docList" ).change(function() {
     	var doc = $('#docList').find(":selected").val();
     	$.session.set("doc", doc);
+    	//Don't send doc name here. Send both doc id and selected date
     	$("#sendDoc").click();
-    	alert("Selected Doctor not available on Dates Marked in Red!");
     	});
     $("#bk").click(function(){
     	var sel = $('#slotList').find(":selected").text();
@@ -218,7 +218,7 @@ try {
 <section id='31' class = 'row1'>31</section>
 </section>
 
-<div id="book">
+<div id="book" style="position:absolute; top:550px; left:25px;">
     <b>Pick a Slot for Day:</b><!-- <b id='d'><%=request.getAttribute("dt") %></b> -->
     <p>Available:
     <select id='slotList'>
@@ -231,62 +231,5 @@ try {
     <button id="bk"> Book!</button>
     <button id="cls"> Close</button>
   </div>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <b>Pick a Slot for Day:</b><b id='d'></b>
-    <p>Available:
-    <select id='slotList'>
-    	<option value="choose" selected>Choose</option>
-		<option value="Slot1">Slot 1</option>
-		<option value="Slot2">Slot 2</option>
-		<option value="Slot3">Slot 3</option>
-	</select>
-    </p>
-    <button id="bk"> Book!</button>
-    <button id="cls"> Close</button>
-  </div>
-
-</div> -->
-
-<!-- <script type="text/javascript">
-//Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-bk.onclick = function() {
-	var sel = $('#slotList').find(":selected").text();
-	if (sel=="Choose")
-		{
-		alert("Choose a slot!");
-		}
-	else {
-		alert("Booked for:" + sel);
-	    modal.style.display = "none";
-	}
-}
-
-cls.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script> -->
 </body>
 </html>
