@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.websocket.api.Session;
-
 import domain.login.Login;
 import userDAO.*;
 import bookDAO.*;
@@ -71,6 +69,14 @@ public class BookController extends HttpServlet {
 			List<String> list_format_slot = docSched.getAvailSlots();
 			
 			//send this list of avail slots to populate
+			if(submitType.equals("slotList"))
+			{
+				String selDate = request.getParameter("selDate");
+				System.out.println("Sel Date: "+ selDate);
+				request.setAttribute("dt", selDate);
+				request.setAttribute("slots", list_format_slot);
+				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
+			}
 			
 			//recieve slotid, get patid
 			int Slot_Id = 1;

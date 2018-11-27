@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.websocket.api.Session;
-
 import domain.login.Login;
 import userDAO.*;
 import bookDAO.*;
