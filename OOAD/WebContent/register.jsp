@@ -250,10 +250,10 @@ hr {
       
       <label for="secretquestion"><b>Secret Question</b></label>
       <br><select name = "secretquestion" id = "secretquestion" required>
-  			<option value="fathermiddle">What is your father's middle name?</option>
-  			<option value="mothermaiden">What is your mother's maiden name?</option>
-  			<option value="homestreet">What street did you grow up on?</option>
-  			<option value="homecity">In what city were you born?</option>
+  			<option value="What is your father's middle name?">What is your father's middle name?</option>
+  			<option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+  			<option value="What street did you grow up on?">What street did you grow up on?</option>
+  			<option value="In what city were you born?">In what city were you born?</option>
 		  </select>
 	  <br>
 		
