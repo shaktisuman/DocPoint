@@ -6,6 +6,17 @@
        <meta charset="utf-8">
        <title></title>
        <link rel="stylesheet" href="./client.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery.session.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+       
+       <script type="text/javascript">
+         function goHome() {
+        	 $("#uname").attr("value",$.cookie("username"));
+        	 $("#submit").click();
+
+         }
+       </script>
    </head>
 <form name="loginform" action="PatientController" method="post" >
     <h1>Edit Profile</h1>
@@ -26,7 +37,9 @@
         <input type="checkbox" name="sickness" value="heart"> Heart 
         <input type="checkbox" name="sickness" value="highBlood"> High Blood Pressure
         <input type="checkbox" name="sickness" value="Stroke"> Stroke <br>
-    <input class="button" style="vertical-align:middle" type="submit" name="submit" value="submit">
+        <input id="uname" name="uname" type="text" style="display:none;">
+    <input id="submit" type="submit" name="submit" value="submit" style="display:none;">
+    <button class="button" style="vertical-align:middle" onclick="goHome()">Submit</button>
    
     </form>
     
