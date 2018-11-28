@@ -11,7 +11,7 @@
               <section>
               <h1>Appointments</h1>
               <div class="btngrp">
-              <button class="button" style="vertical-align:middle">Cancel</button>
+              
               <select id='appList' name ='appList' style="width:500px;">
 				<% 
 			try {
