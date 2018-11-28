@@ -64,19 +64,25 @@ public class PatientController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			PatientDao patientDao = new PatientDaoImpl();
-			Cookie ck[]=request.getCookies();
-			String user = ck[0].getValue();
-			Patient p = patientDao.getPatient(user);
-		
+			/*Cookie ck[]=request.getCookies();
+			String user = ck[0].getValue();*/
+			String username = request.getParameter("uname");
+			Patient p = patientDao.getPatient(username);
+			
+			System.out.println("ehlo");
 			
 			String submitType = request.getParameter("submit");
+			System.out.println("test here");
+			System.out.println(p.getName());
+			System.out.println(submitType);
 			
 			if(submitType.equals("submit") && p!=null && p.getName()!=null){
 				
-				
+				System.out.println("1212");
 				if(request.getParameter("name") != null &&  !request.getParameter("name").equals("")){
 					p.setName(request.getParameter("name") );
 				}
@@ -105,12 +111,14 @@ public class PatientController extends HttpServlet {
 				request.setAttribute("medicalhistory",p.getMedicalHistory());
 				request.setAttribute("message", "Hello "+p.getName());
 				patientDao.updatePatient(p);
-				System.out.println(p);
+				System.out.println(p.getID());
 				
 				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);	 
 			}
 			
 			if(submitType.equals("seeAppt")){
+				System.out.println("inside seeAppt");
+				System.out.println(p.getID());
 				ApptDao apptDao = new ApptDaoImpl();
 				List<Appt> allAppt = apptDao.getApptForPatient(p.getID());
 				SlotDao slotDao = new SlotDaoImpl();
@@ -132,8 +140,13 @@ public class PatientController extends HttpServlet {
 					
 					allApptStr.add(ap.getAppt_Id() + "_" + "Doctor Name: " + docName + "Date: " + date + "Start Time: " + start_T + "End Time: " + end_T);
 				}
-				
+				for(String x:allApptStr) {
+					System.out.println("in loop");
+					System.out.println(x);
+				}
+				request.setAttribute("firstLoad", "done");
 				request.setAttribute("allApptStr", allApptStr);
+				request.getRequestDispatcher("seeAppt.jsp").forward(request, response);
 			}
 			
 		}
@@ -146,4 +159,3 @@ public class PatientController extends HttpServlet {
 	}
 
 }
-
