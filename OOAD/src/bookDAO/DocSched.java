@@ -30,10 +30,10 @@ public class DocSched {
 				}
 			}
 			if(contained == false) {
-				availSlots.add(Integer.toString(slot.getSlot_Id()) + ":" + Integer.toString(slot.getStart_t()) + "_" + Integer.toString(slot.getEnd_t()));
+				availSlots.add(Integer.toString(slot.getSlot_Id()) + "_" + slot.getStart_t()/60 + ":" + slot.getStart_t()%60 + "-" +  + slot.getEnd_t()/60 + ":" + slot.getEnd_t()%60);
 			 }
 		}
-		
+		System.out.println("here");
 		return availSlots;
 	}
 }
