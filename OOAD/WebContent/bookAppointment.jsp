@@ -179,8 +179,6 @@ body {
 
 <a id='logout' href="logout.jsp"> Logout</a>
 
-<a id = 'home' href="PatientHome.jsp">Home </a>
-
 <center><b><h2>Book an Appointment!</h2></b></center>
 
 <form name="fetchDList" action="BookController" method="post">
