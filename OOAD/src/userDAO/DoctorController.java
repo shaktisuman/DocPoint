@@ -62,9 +62,10 @@ public class DoctorController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			DoctorDao doctorDao = new DoctorDaoImpl();
-			Cookie ck[]=request.getCookies();
-			String user = ck[0].getValue();
-			Doctor d = doctorDao.getDoctor(user);
+			/*Cookie ck[]=request.getCookies();
+			String user = ck[0].getValue();*/
+			String username = request.getParameter("uname");
+			Doctor d = doctorDao.getDoctor(username);
 			
 			String submitType = request.getParameter("submit");
 			
@@ -93,6 +94,7 @@ public class DoctorController extends HttpServlet {
 				}
 				
 				request.setAttribute("allApptStr", allApptStr);
+				request.getRequestDispatcher("docSeeAppt.jsp").forward(request, response);
 			}
 			
 		}
@@ -101,7 +103,6 @@ public class DoctorController extends HttpServlet {
 			System.out.println(e);
 		}
 		
-
 	}
 
 }
