@@ -31,6 +31,7 @@ public class AdminLoginController extends HttpServlet {
 		String pass = request.getParameter("password");
 		String submitType = request.getParameter("submit");
 		
+		System.out.println(username + " " + pass);
 		Login login = new Login(username, pass);
 		
 		
