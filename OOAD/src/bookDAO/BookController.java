@@ -24,6 +24,7 @@ public class BookController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+			
 			System.out.println("in DoPost");
 			
 			//Get all doctors from DB
@@ -41,10 +42,10 @@ public class BookController extends HttpServlet {
 			//Sending list of doctors to populate dropdown in UI
 			if(submitType.equals("fetchDList"))
 			{
+				boolean showBookDiv = false;
 				System.out.println("Sending list of doctors to populate dropdown in UI");
 				request.setAttribute("names", docListFormat);
 				request.setAttribute("firstLoad", "done");
-				//request.setAttribute("busyDays", returnedDates);
 				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
 			
@@ -54,16 +55,19 @@ public class BookController extends HttpServlet {
 			//send this list of avail slots to populate
 			if(submitType.equals("slotList"))
 			{
+				//Receive Selected DocIdNameString and DateString
 				String selDate = request.getParameter("selDate");
+				String Day = selDate.split("-")[0];
+				String Month = selDate.split("-")[1];
+				String Year = selDate.split("-")[2];
 				System.out.println("Sel Date: "+ selDate);
-				request.setAttribute("dt", selDate);
-				
-				//Receive Selected DocId and Date
-				
-				String[] SelectedDoc = request.getParameterValues("docList");
+				//request.setAttribute("dt", Day);
+				String[] SelectedDoc = request.getParameterValues("selDoc");
 				System.out.println("Printing selected doctor below");
 				System.out.print("Selected Doctor ID:");
 				System.out.println(SelectedDoc[0].split("_")[0]);
+				
+				
 				Doc_Id = Integer.valueOf((SelectedDoc[0].split("_")[0]));
 				date = request.getParameter("selDate");
 				
@@ -76,34 +80,61 @@ public class BookController extends HttpServlet {
 				
 				//create appt list
 				ApptDao apptDao = new ApptDaoImpl();
-				List<Appt> list_appt = apptDao.getApptForDoc(Doc_Id);
+				List<Appt> list_appt = apptDao.getApptForDoc(Doc_Id, date);
 				
 				DocSched docSched = new DocSched(doc, list_slot, list_appt);
 				
 				List<String> list_format_slot = docSched.getAvailSlots();
-				
-				request.setAttribute("slots", list_format_slot);
-				
+				for(String x: list_format_slot) {
+					System.out.println(x);
+				}
 				boolean showBookDiv = true;
+				request.setAttribute("slots", list_format_slot);
 				request.setAttribute("showBookDiv", showBookDiv);
+				request.setAttribute("firstLoad", "done");
+				request.setAttribute("names", docListFormat);
 				request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
 			}
 			
 			
 			if(submitType.equals("finishAppt"))
 			{
+				String dId = request.getParameter("dId");
+				String saveDt = request.getParameter("saveDt");
+				
 				//recieve SlotId, PatId
 				String Slot_IdStr = request.getParameter("selSlotId");
 				int Slot_Id = Integer.valueOf(Slot_IdStr);
-				
+				System.out.println("Selected slot");
+				System.out.println(Slot_Id);
 				String Pat_IdStr = request.getParameter("selPatId");
-				int Pat_Id = Integer.valueOf(Pat_IdStr);
+				
+				PatientDao patientDao = new PatientDaoImpl();
+				Patient p = patientDao.getPatient(Pat_IdStr);
+				int Pat_Id = p.getID();
+				
+				System.out.println("Pat id:");
+				System.out.println(Pat_Id);
 				
 				ApptDao apptDao = new ApptDaoImpl();
-				
 				//create new appt object and save to db
-				Appt new_Appt = new Appt(date, Slot_Id, Doc_Id, Pat_Id);
+				
+				System.out.println(saveDt +"     " + Slot_Id + "   " + dId + "   " + Pat_Id);
+				
+				Appt new_Appt = new Appt(saveDt, Slot_Id, Pat_Id, Integer.parseInt(dId));
+				
 				apptDao.addAppt(new_Appt);
+				request.setAttribute("confMSG", "success");
+				//request.getRequestDispatcher("bookAppointment.jsp").include(request, response);
+				request.setAttribute("name", p.getName());
+				request.setAttribute("address", p.getAddress());
+				request.setAttribute("birthdate", p.getBirthdate());
+				request.setAttribute("city", p.getCity());
+				request.setAttribute("Gender", p.getGender());
+				request.setAttribute("medicalhistory",p.getMedicalHistory());
+				request.setAttribute("message", "Hello "+p.getName());
+				patientDao.updatePatient(p);				
+				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
 			}
 			
 			
@@ -117,5 +148,3 @@ public class BookController extends HttpServlet {
 		
 	}
 }
-
-			
