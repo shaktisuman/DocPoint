@@ -1,6 +1,9 @@
 package userDAO;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -8,14 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bookDAO.*;
 import domain.login.Customer;
 import domain.login.CustomerDao;
 import domain.login.CustomerDaoImpl;
 import domain.login.Login;
 import sun.security.util.Password;
-import userDAO.Patient;
-import userDAO.PatientDao;
-import userDAO.PatientDaoImpl;
+import userDAO.*;
 
 //Please copy this into DB
 
@@ -104,6 +106,30 @@ public class PatientController extends HttpServlet {
 				request.setAttribute("message", "Hello "+p.getName());
 				patientDao.updatePatient(p);
 				System.out.println(p);
+				
+				ApptDao apptDao = new ApptDaoImpl();
+				List<Appt> allAppt = apptDao.getApptForPatient(p.getID());
+				SlotDao slotDao = new SlotDaoImpl();
+				List<Slot> allSlot = new ArrayList<Slot>();
+				
+				DoctorDao doctorDao = new DoctorDaoImpl();
+				
+				List<String> allApptStr = new ArrayList<String>();
+				
+				for(Appt ap: allAppt) {
+					Slot slot_temp = slotDao.getSlot(ap.getSlot_Id());
+					
+					Doctor doc_temp = doctorDao.getDoctor(ap.getDoc_Id());
+					
+					String docName = doc_temp.getName();
+					String date = ap.getAppt_Date();
+					String start_T = Integer.toString(slot_temp.getStart_t()/60) + ":" + Integer.toString(slot_temp.getStart_t()%60);
+					String end_T = Integer.toString(slot_temp.getEnd_t()/60) + ":" + Integer.toString(slot_temp.getEnd_t()%60);
+					
+					allApptStr.add(ap.getAppt_Id() + "_" + "Doctor Name: " + docName + "Date: " + date + "Start Time: " + start_T + "End Time: " + end_T);
+				}
+				
+				request.setAttribute("allApptStr", allApptStr);
 				
 				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
 				 
