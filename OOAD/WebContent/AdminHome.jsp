@@ -23,6 +23,7 @@
      
       <h2>${message} </h2> 
       <button class="button" style="vertical-align:middle" onclick="location.href = 'bookAppointment.jsp';" id="bookApp">Book Appointment</button>
+      <button class="button" style="vertical-align:middle" onclick="location.href = 'doctorregister.jsp';" id="doctorreg">Doctor Register</button>
       <div class="row1">
             
               <div class="box">
@@ -30,27 +31,11 @@
               <h1>Profile</h1>
               
               <p >Name : ${name}  </p>
-              <p>Birthdate : ${birthdate}</p>
-              <p>Address : ${address} City : ${city} </p>
-              <p>Medicalhistory : ${medicalhistory}</p>
-              <p>Gender: ${Gender}</p>
+              
           </section>
           </div>
          
-          <div class="box">
-              <section>
-              <h1>Appointments</h1>
-              <div class="btngrp">
-              <button class="button" style="vertical-align:middle">Reschedule</button>
-              <button class="button" style="vertical-align:middle">Cancel</button>
-              </div>
-              
-              <p>some text <br> </p>
-              <p>some text</p>
-              <p>some text</p>
-              <p>some text</p>
-          </section>
-          </div>
+          
       </div>
       
      
