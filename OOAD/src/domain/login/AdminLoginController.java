@@ -43,7 +43,7 @@ public class AdminLoginController extends HttpServlet {
 			
 			request.setAttribute("message", "Hello "+a.getName());
 			request.setAttribute("name", a.getName());
-			request.setAttribute("info", a.getInfo());
+			//request.setAttribute("info", a.getInfo());
 			Cookie ck=new Cookie("username",username);
 			
 			response.addCookie(ck);
