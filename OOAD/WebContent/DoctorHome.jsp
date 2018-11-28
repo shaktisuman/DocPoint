@@ -42,22 +42,29 @@
               <p>Info: ${info}</p>
           </section>
           </div>
+          <script type="text/javascript">
+         function seeApps() {
+        	 $("#uname").attr("value",$.cookie("username"));
+        	 $("#getAppt").click();
+
+         }
          
+         </script>
           <div class="box">
               <section>
               <h1>Appointments</h1>
-              
-              
-              <p>some text <br> </p>
-              <p>some text</p>
-              <p>some text</p>
-              <p>some text</p>
+              <div class="btngrp">
+              <button class="button" style="vertical-align:middle" onclick="seeApps()" id="seeApp">See Appointments</button>
+              <form name="seeAppt" action="DoctorController" method="post">
+              <input id="uname" name="uname" type="text" style="display:none;">
+				<input id="getAppt" type="submit" name="submit" value="seeAppt" style="display:none;">
+				</form>
+              </div>
           </section>
           </div>
       </div>
       
      
-      
       
     </body>
 </html>
