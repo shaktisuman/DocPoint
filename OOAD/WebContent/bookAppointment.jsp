@@ -13,6 +13,17 @@
 <script>
 $(document).ready(function(){
 	//pre-fetch list of doctors
+	<%
+	try {
+		if(request.getAttribute("confMSG")=="success") {
+			%> alert("Success");<%
+		}
+	}
+	catch(Exception e) {
+		
+	}
+	
+	%>
 	
 	<%
 	try {
@@ -42,6 +53,7 @@ $(document).ready(function(){
 	%>
 	
 	$('#lblHi').html("Hi " + $.cookie("username"));
+
 	var d = new Date();
     n = d.getMonth();
     y = d.getFullYear();
@@ -65,25 +77,45 @@ $(document).ready(function(){
             var str = monthNames[d.getMonth()] + " - " + day;
             $('#d').html(str);
             alert( "Booking for: " + $.session.get("doc").split("_")[1]);
-            $("#selDate").attr("value",day);
+          	//getting date here:
+        	var dt = new Date();
+    		m = dt.getMonth();
+    		var s;
+    		if(m+1<=9) {
+   			s = "0"+ (m+1).toString();
+    		}
+    		else {
+    		s = (m+1).toString();
+    		}
+    		var finalDt = dt.getFullYear() + "-" + s + "-" + day;
+    		$.session.set("finalDt", finalDt);
+            $("#selDate").attr("value",finalDt);
+            $("#selDoc").attr("value",doc);
             $("#getSlot").click();
-            bool.style.display = "block";
+            $.session.set("dId",$.session.get("doc").split("_")[0])
+            $.session.set("doc", "undefined");
+            book.style.display = "block";
     	}
     });
     $( "#docList" ).change(function() {
     	var doc = $('#docList').find(":selected").val();
     	$.session.set("doc", doc);
-    	//Don't send doc name here. Send both doc id and selected date
-    	$("#sendDoc").click();
     	});
     $("#bk").click(function(){
     	var sel = $('#slotList').find(":selected").text();
+    	var sendSlot = $('#slotList').find(":selected").val().split("_")[0];
     	if (sel=="Choose")
     		{
     		alert("Choose a slot!");
     		}
     	else {
     		alert("Booked for:" + sel);
+    		$("#sId").attr("value",sendSlot);
+    		$("#pId").attr("value",$.cookie("username"));
+    		$("#dId").attr("value",$.session.get("dId"));
+    		$("#saveDt").attr("value",$.session.get("finalDt"));
+    		$("#save").click();
+    		alert("Booking Success!");
     	    book.style.display = "none";
     	}
     });
@@ -157,13 +189,12 @@ body {
 
 <form name="slotList" action="BookController" method="post">
 <input id="selDate" name="selDate" type="text" style="display:none;">
+<input id="selDoc" name="selDoc" type="text" style="display:none;">
 <input id="getSlot" type="submit" name="submit" value="slotList" style="display:none;">
 </form>
 
-
 <label id='lblDocPick'>Pick a Doctor:</label>
 
-<form name="dlist" action="BookController" method="post">
 <select id='docList' name ='docList'>
 <option value="pick" selected>Pick a Doctor</option>
 <% 
@@ -174,12 +205,10 @@ try {
 }
 }
 	catch(Exception e) {
-		System.out.print(e);
+		
 	}
 %>
 </select>
-<input id="sendDoc" type="submit" name="submit" value="dlist" style="display:none;">
-</form>
 
 
 <header id='calHdr'><b>Pick a Date: </b><b id='m'></b></header>
@@ -222,14 +251,29 @@ try {
     <b>Pick a Slot for Day:</b><!-- <b id='d'><%=request.getAttribute("dt") %></b> -->
     <p>Available:
     <select id='slotList'>
-    	<option value="choose" selected>Choose</option>
-		<option value="Slot1">Slot 1</option>
-		<option value="Slot2">Slot 2</option>
-		<option value="Slot3">Slot 3</option>
+    	<option value="Pick a Slot" selected>Choose</option>
+		<% 
+try {
+	List<String> slots = (List<String>)request.getAttribute("slots"); 
+	for(int i = 0; i< slots.size();i++) { %>
+		<option value=<%=(slots.get(i))%>><%=(slots.get(i)).split("_")[1]%> </option> <%
+}
+}
+	catch(Exception e) {
+		
+	}
+%>
 	</select>
     </p>
-    <button id="bk"> Book!</button>
-    <button id="cls"> Close</button>
+    <form name="finishAppt" action="BookController" method="post">
+    <input id="sId" name="selSlotId" type="text" style="display:none;">
+    <input id="pId" name="selPatId" type="text" style="display:none;">
+    <input id="dId" name="dId" type="text" style="display:none;">
+    <input id="saveDt" name="saveDt" type="text" style="display:none;">
+    <button id="bk">Finish</button>
+<input id="save" type="submit" name="submit" value="finishAppt" style="display:none;">
+</form>
+    <button id="cls" style="position:absolute;top:70px;left:60px;width:100px;"> Start Over!</button>
   </div>
 </body>
 </html>
