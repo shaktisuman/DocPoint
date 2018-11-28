@@ -12,6 +12,9 @@ USE DRBOOK;
 CREATE TABLE DRBOOK_ADMIN
 (
   Admin_Id 			INT NOT NULL,
+  Name 				VARCHAR(255) NOT NULL,
+  Username			VARCHAR(255) UNIQUE,
+  Password			VARCHAR(255),
   CONSTRAINT pk_drbook_admin PRIMARY KEY (Admin_Id)
 );
 
@@ -66,7 +69,7 @@ CREATE TABLE APPT
   CONSTRAINT fk_appt_doc FOREIGN KEY (Doc_Id) REFERENCES Doc(Doc_Id)
 );
 
-INSERT INTO DRBOOK_ADMIN VALUES ('1');
+INSERT INTO DRBOOK_ADMIN VALUES ('1','Aly Smith', 'alysmith@email.com', 'Password01');
 
 INSERT INTO DOC VALUES ('1', 'John Smith', 'johnsmith@email.com', 'Password01', 'Pediatrician', 'I am a doctor that specializes in treating children.');
 INSERT INTO DOC VALUES ('2', 'Sarah Palmer', 'sarahpalmer@email.com', 'Password01',  'ENT', 'I am a doctor that specializes in ear, nose, throat.');
