@@ -4,8 +4,11 @@
 
 <html>
    <head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="jquery.session.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+   
    <style type="text/css">
-
 /* Change the link color to #111 (black) on hover */
 .link-lookalike: hover {
     background-color: #111;
@@ -44,9 +47,11 @@
           </div>
           <script type="text/javascript">
          function seeApps() {
-        	 $("#uname").attr("value",$.cookie("username"));
-        	 $("#getAppt").click();
-
+        	 //alert("java Script");
+        	 	$("#uname").attr("value",$.cookie("username"));
+        	 	//alert("java Script");
+        		getAppt.click();
+        		//alert("out");
          }
          
          </script>
