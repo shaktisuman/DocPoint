@@ -196,7 +196,7 @@ hr {
 </a>
 
 <div class="container">
-<form name="regform" action="DoctorLoginController" method="post" onsubmit="return regValidate()">
+<form name="regform" action="AdminController" method="post" onsubmit="return regValidate()">
 	  <h1>Doctor Registration</h1>
       <p>Please create an account in order to use Dr. Book.</p>
       <hr>
@@ -238,9 +238,7 @@ hr {
         <button type="submit" name="submit" value="register" class="signupbtn">Sign Up</button>
     </div>
       
-    <div class="container signin">
-    	<p>Already have an account? <a href="doctorlogin.jsp">Sign in</a>.</p>
-  	</div>
+   
 </form>
 </div>
 
