@@ -71,18 +71,15 @@ public class PatientController extends HttpServlet {
 			/*Cookie ck[]=request.getCookies();
 			String user = ck[0].getValue();*/
 			String username = request.getParameter("uname");
+			
 			Patient p = patientDao.getPatient(username);
-			
-			System.out.println("ehlo");
-			
+			System.out.println();
 			String submitType = request.getParameter("submit");
 			System.out.println("test here");
-			System.out.println(p.getName());
-			System.out.println(submitType);
 			
-			if(submitType.equals("submit") && p!=null && p.getName()!=null){
+			if(submitType.equals("submit") && p.getName()!=null){
+				System.out.println("in submit");
 				
-				System.out.println("1212");
 				if(request.getParameter("name") != null &&  !request.getParameter("name").equals("")){
 					p.setName(request.getParameter("name") );
 				}
@@ -140,15 +137,22 @@ public class PatientController extends HttpServlet {
 					
 					allApptStr.add(ap.getAppt_Id() + "_" + "Doctor Name: " + docName + "Date: " + date + "Start Time: " + start_T + "End Time: " + end_T);
 				}
-				for(String x:allApptStr) {
-					System.out.println("in loop");
-					System.out.println(x);
-				}
+				
 				request.setAttribute("firstLoad", "done");
 				request.setAttribute("allApptStr", allApptStr);
 				request.getRequestDispatcher("seeAppt.jsp").forward(request, response);
 			}
 			
+			/*if(submitType.equals("doDel")){
+				System.out.println("inside cancel appointment");
+				ApptDao apptDao1 = new ApptDaoImpl();
+				int selAppt = Integer.parseInt(request.getParameter("selAppt"));
+				Appt a = apptDao1.getAppt(selAppt);
+				apptDao1.deleteAppt(a);
+				System.out.println("Delete Done");
+				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
+			}
+			System.out.println("outside3");*/
 		}
 		catch(Exception e){
 			System.out.println("Something went wrong");
