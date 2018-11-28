@@ -107,6 +107,10 @@ public class PatientController extends HttpServlet {
 				patientDao.updatePatient(p);
 				System.out.println(p);
 				
+				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);	 
+			}
+			
+			if(submitType.equals("seeAppt")){
 				ApptDao apptDao = new ApptDaoImpl();
 				List<Appt> allAppt = apptDao.getApptForPatient(p.getID());
 				SlotDao slotDao = new SlotDaoImpl();
@@ -130,9 +134,6 @@ public class PatientController extends HttpServlet {
 				}
 				
 				request.setAttribute("allApptStr", allApptStr);
-				
-				request.getRequestDispatcher("PatientHome.jsp").forward(request, response);
-				 
 			}
 			
 		}
