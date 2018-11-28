@@ -74,7 +74,7 @@ ${successMessage}
 <p>Please Login</p>
 
 <div class="container">
-  <form name="loginform" action="LoginController" method="post" onsubmit="return loginValidate()" >
+  <form name="loginform" action="AdminLoginController" method="post" onsubmit="return loginValidate()" >
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>
 
